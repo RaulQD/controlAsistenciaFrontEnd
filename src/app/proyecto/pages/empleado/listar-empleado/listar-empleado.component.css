@@ -1,0 +1,169 @@
+.listar {
+  background-color: var(--panel-color);
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+.listar h4 {
+  padding: 0.875rem;
+  border-bottom: 1px solid var(--second-table-color);
+}
+.listar__content {
+  padding: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.listar__button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+}
+.modal-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.listar__table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--table-color);
+  border: 1px solid var(--second-table-color);
+  /* border-radius: 10px; */
+  padding: 0.875rem;
+}
+.listar__table .listar__thead th {
+  padding: 1rem 0.75rem;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-color-light);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--second-table-color);
+}
+.listar__table .listar__thead,
+.listar__table .listar__tbody {
+  text-align: center;
+}
+.listar__table .listar__tbody tr {
+  border-bottom: 1px solid var(--second-table-color);
+}
+.listar__table .listar__tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+.listar__table .listar__tbody tr:last-child {
+  border-bottom: none;
+}
+.listar__table .listar__tbody tr td {
+  padding: 0.625rem 0.625rem;
+  font-size: 13px;
+}
+.listar__table .listar__tbody tr:hover {
+  background-color: #ececec;
+}
+.active p {
+  display: inline-block;
+  background-color: #0cdd0f;
+  color: var(--panel-color);
+  border-radius: 2.5rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.listar__action-buttons {
+  border: none;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  text-align: center;
+}
+.listar__action-buttons:nth-child(2) {
+  color: #ff0000;
+}
+.form__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.form__camp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.form__input {
+  outline: none;
+  border: 1px solid var(--black-light-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
+.form__export {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.form__file {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  color: #05b308;
+}
+.form__export a {
+  color: #05b308;
+  cursor: pointer;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+.previus {
+  font-size: 1.875rem;
+  cursor: pointer;
+  color: var(--black-light-color);
+  transition: 0.3s ease-in-out;
+}
+.previus:hover {
+  color: var(--primary-color);
+}
+.sort {
+  cursor: pointer;
+  color: var(--black-light-color);
+  font-size: 1.5rem;
+  transition: 0.3s ease-in-out;
+}
+.sort:hover {
+  color: var(--primary-color);
+}
+.size {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.btn__save {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--panel-color);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: none;
+}
+.btn__export {
+  background-color: #05b308;
+  border: none;
+  padding: 0.625rem 1rem;
+  border-radius: 5px;
+  color: var(--panel-color);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+}

@@ -1,0 +1,35 @@
+@import "/src/styles.css";
+
+.breadcrumbs__content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* padding: 10px 10px 10px 0; */
+  font-family: var(--font-main);
+  margin-bottom: 1.5rem;
+  background-color: var(--panel-color);
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  border-radius: 0.5rem;
+}
+.breadcrumbs {
+  padding: 10px 10px 10px 1rem;
+  font-family: var(--font-main);
+}
+.breadcrumbs a {
+  color: var(--text-color);
+}
+.undercore a {
+  color: var(--text-color);
+}
+.breadcrumb__item {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+}
+.breadcrumb__item .breadcrumb__first {
+  color: var(--second-color);
+}
+.breadcrumb__item:not(:last-of-type)::after {
+  content: ">";
+  margin: 0 10px;
+}

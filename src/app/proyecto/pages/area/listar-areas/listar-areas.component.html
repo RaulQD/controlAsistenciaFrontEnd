@@ -1,0 +1,57 @@
+<div class="listar">
+    <h4>
+        Lista de Area
+    </h4>
+
+    <div class="listar__content">
+        <div class="listar__button">
+            <a routerLink="/dashboard/registrar-area" class="btn__save">
+                <i class="bx bx-plus"></i>
+                Nueva Area
+            </a>
+
+        </div>
+        <div class="listar__content-table">
+            <div class="size">
+                <p>Mostrar</p>
+                <a (click)="sort()" class="sort">
+                    <i class='bx bxs-sort-alt'></i>
+                </a>
+                <p>registros</p>
+            </div>
+            <table class="listar__table">
+                <thead class="listar__thead">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre de Area</th>
+                    </tr>
+                </thead>
+                <tbody class="listar__tbody">
+                    <tr *ngFor="let a of area">
+                        <td>{{a.idArea}}</td>
+                        <td>{{a.nombre}}</td>
+                        <td>
+                            <div class="listar__acciones">
+                                <a [routerLink]="['/dashboard/editar-area/',a.idArea]" class="listar__action-buttons">
+                                    <i class="bx bx-edit"></i>
+                                </a>
+                                <button (click)="deleteArea(a)" class="listar__action-buttons">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <a (click)="rewind()" class="previus">
+                    <i class='bx bx-first-page'></i>
+                </a>
+                <a (click)="forward()" class="previus">
+                    <i class='bx bx-last-page'></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

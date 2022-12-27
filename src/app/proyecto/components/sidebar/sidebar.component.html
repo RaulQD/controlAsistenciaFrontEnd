@@ -1,0 +1,76 @@
+<div class="sidebar">
+    <nav class="sidebar__container">
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="./../../../assets/img/undraw_data_processing_yrrv.svg" alt="computer">
+            </div>
+            <span class="logo_name"> Admin CAsistencia</span>
+        </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a routerLink="/dashboard" class="nav__link">
+                        <i class='bx bxs-dashboard nav__icon'></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="nav__dropdown">
+                        <a class="nav__link">
+                            <i class='bx bxs-cog nav__icon'></i>
+                            <span class="nav__name">Mantenimiento</span>
+                            <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
+                        </a>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="/dashboard/listar-area" class="nav__dropdown-item">Areas</a>
+                                <a routerLink="/dashboard/cargo" class="nav__dropdown-item">Cargos</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li>
+                    <div class="nav__dropdown">
+                        <a class="nav__link">
+                            <i class='bx bx-clipboard nav__icon'></i>
+                            <span class="nav__name">Procesos</span>
+                            <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
+                        </a>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="/dashboard/listar-empleado" class="nav__dropdown-item">Empleados</a>
+                                <a routerLink="/dashboard/feriado" class="nav__dropdown-item">Horarios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li>
+                    <a class="nav__link">
+                        <i class='bx bx-pie-chart-alt nav__icon'></i>
+                        <span class="nav__name">Horarios</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="nav__dropdown">
+                        <a class="nav__link">
+                            <i class='bx bxs-report nav__icon'></i>
+                            <span class="nav__name">Reportes</span>
+                            <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
+                        </a>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="/dashboard/reporte-asistencia" class="nav__dropdown-item">Resporte de
+                                    Asistencia</a>
+                                <a routerLink="/dashboard/reporte-general" class="nav__dropdown-item">Reporte
+                                    General</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

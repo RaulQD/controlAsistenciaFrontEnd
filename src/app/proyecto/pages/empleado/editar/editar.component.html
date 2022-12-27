@@ -1,0 +1,81 @@
+<div class="container-registrar">
+    <h4 class="form__title">
+        <i class='bx bx-pencil'></i>
+        Actualizar Empleado
+    </h4>
+    <form action="#" class="form">
+        <div class="form__content">
+            <div class="form__camp">
+                <label for="nombre" class="form__label">Nombres</label>
+                <input type="text" name="nombre" id="nombre" class="form__input" placeholder="Ingresar Nombre"
+                    [(ngModel)]="objEmpleado.nombre" disabled="true">
+            </div>
+            <div class="form__camp">
+                <label for="apellido" class="form__label">Apellidos</label>
+                <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Ingresar Apellidos"
+                    [(ngModel)]="objEmpleado.apellido" disabled="true">
+            </div>
+            <div class="form__camp">
+                <label for="dni" class="form__label">DNI</label>
+                <input type="text" name="dni" id="dni" class="form__input" placeholder="Ingresar Dni"
+                    [(ngModel)]="objEmpleado.dni" disabled="true">
+            </div>
+            <div class="form__camp">
+                <label for="direccion" class="form__label">Dirección</label>
+                <input type="text" name="direccion" id="direccion" class="form__input" placeholder="Ingresar dirección"
+                    [(ngModel)]="objEmpleado.direccion">
+            </div>
+            <div class="form__camp">
+                <label for="correo" class="form__label">Correo</label>
+                <input type="correo" name="correo" id="correo" class="form__input" placeholder="example@example.com"
+                    [(ngModel)]="objEmpleado.correo">
+            </div>
+            <div class="form__camp">
+                <label for="contacto" class="form__label">Contacto</label>
+                <input type="text" name="contacto" id="contacto" class="form__input" placeholder="Contacto"
+                    [(ngModel)]="objEmpleado.contacto">
+            </div>
+            <div class="form__camp">
+                <label for="tarifa" class="form__label">Renumeración</label>
+                <input type="number" name="tarifa" id="tarifa" class="form__input" placeholder="0.0" autocomplete="off"
+                    [(ngModel)]="objEmpleado.tarifa_hora">
+            </div>
+            <div class="form__camp">
+                <label for="nacimiento" class="form__label">F. de Nacimiento</label>
+                <input type="date" name="nacimiento" id="nacimiento" class="form__input"
+                    [(ngModel)]="objEmpleado.fechaNacimiento" disabled="true">
+            </div>
+            <div class="form__camp">
+                <label for="registro" class="form__label">F. de Registro</label>
+                <input type="date" name="registro" id="registro" class="form__input"
+                    [(ngModel)]="objEmpleado.fechaRegistro" disabled="true">
+            </div>
+            <div class="form__camp">
+                <label for="area" class="form__label">Area</label>
+                <select name="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let a of areas" value="{{a.idArea}}">{{a.nombre}}</option>
+                </select>
+            </div>
+            <div class="form__camp">
+                <label for="cargo" class="form__label">Cargo</label>
+                <select name="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let c of cargos" value="{{c.idCargo}}">{{c.nombre}}</option>
+                </select>
+            </div>
+            <div class="form__camp">
+                <label for="id_act_estado" class="form__label">Estado</label>
+                <select name="estado" id="id_act_estado" class="form__input" [(ngModel)]="objEmpleado.estado">
+                    <option value="-1">[Seleccionar]</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="form__btn">
+        <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
+        <button (click)="putEmpleado()" class="btn__save"> <i class="bx bx-save"></i>Actualizar Registro</button>
+    </div>
+</div>

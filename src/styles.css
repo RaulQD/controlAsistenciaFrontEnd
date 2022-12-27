@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+@import "normalize.css";
+
+:root {
+  --primary-color: #0e4bf1;
+  --second-color: #287bff;
+  --panel-color: #ffffff;
+  --white--color-light: #e2e2e2;
+  --black-color: #000000;
+  --black-light-color: #707070;
+  --text-color: #000000;
+  --text-color-light: #858796;
+  --border-color: #e6e5e5;
+  --text-color-hover: #eaecf4;
+  --font-main: "Montserrat", sans-serif;
+  --font-second: "Poppins", sans-serif;
+  --table-color: #f8f9fc;
+  --second-table-color: #e3e6f0;
+  --red-color: #df2c3e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background-color: var(--panel-color);
+}
+body.dark {
+  --primary-color: #3a3b3c;
+  --second-color: #030508;
+  --panel-color: #242526;
+  --white--color-light: #e2e2e2;
+  --black-color: #ffffff;
+  --black-light-color: #707070;
+  --text-color: #ffffff;
+  --text-color-light: #858796;
+  --border-color: #e6e5e5;
+  --text-color-hover: #eaecf4;
+  --font-main: "Montserrat", sans-serif;
+  --font-second: "Poppins", sans-serif;
+  --table-color: #f8f9fc;
+  --second-table-color: #e3e6f0;
+  --red-color: #ff0000;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+h1,
+p {
+  margin: 0;
+}
+.undercore::after {
+  content: "";
+  background-color: var(--primary-color);
+  width: 6.25rem;
+  height: 0.25rem;
+  display: block;
+}

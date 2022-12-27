@@ -1,0 +1,110 @@
+<div class="container-registrar">
+    <h4 class="form__title">
+        <i class="bx bx-plus"></i>
+        Agregar Nuevo Empleado
+    </h4>
+    <form class="form" [formGroup]="form" (ngSubmit)="postEmpleado($event)">
+        <div class="form__content">
+            <div class="form__camp">
+                <label for="nombre" class="form__label">Nombres</label>
+                <input type="text" formControlName="nombre" id="nombre" class="form__input"
+                    placeholder="Ingresar Nombre" autocomplete="off">
+                <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
+                    <span *ngIf="isValid('nombre')">El campo es
+                        requerido</span>
+                    <span *ngIf="isValidPattern('nombre')">
+                        El campo solo acepta
+                        letras
+                    </span>
+                </div>
+            </div>
+
+            <div class="form__camp">
+                <label for="apellido" class="form__label">Apellidos</label>
+                <input type="text" formControlName="apellido" id="apellido" class="form__input"
+                    placeholder="Ingresar Apellidos" autocomplete="off" [(ngModel)]="objEmpleado.apellido">
+                <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched" class="invalid">
+                    <span *ngIf="isValid('apellido')">El campo es
+                        requerido</span>
+                    <span *ngIf="isValidPattern('apellido')">
+                        El campo solo acepta
+                        letras
+                    </span>
+                </div>
+            </div>
+            <div class="form__camp">
+                <label for="dni" class="form__label">DNI</label>
+                <input type="text" formControlName="dni" id="dni" class="form__input" placeholder="Ingresar Dni"
+                    autocomplete="off" [(ngModel)]="objEmpleado.dni" required>
+                <div *ngIf="form.controls['dni'].errors && form.controls['dni'].touched" class="invalid">
+                    <span *ngIf="isValid('dni')">El campo es
+                        requerido</span>
+                    <span *ngIf="isValidPattern('dni')">
+                        El campo solo acepta números
+                    </span>
+                </div>
+            </div>
+            <div class="form__camp">
+                <label for="direccion" class="form__label">Dirección</label>
+                <input type="text" formControlName="direccion" id="direccion" class="form__input"
+                    placeholder="Ingresar dirección" autocomplete="off" [(ngModel)]="objEmpleado.direccion">
+                <div *ngIf="form.controls['direccion'].errors && form.controls['direccion'].touched" class="invalid">
+                    <span *ngIf="isValid('direccion')">El campo es
+                        requerido</span>
+                    <span *ngIf="isValidPattern('direccion')">
+                        El campo solo acepta
+                        letras
+                    </span>
+                </div>
+            </div>
+            <div class="form__camp">
+                <label for="correo" class="form__label">Correo</label>
+                <input type="email" formControlName="correo" id="correo" class="form__input"
+                    placeholder="example@example.com" autocomplete="off" [(ngModel)]="objEmpleado.correo">
+                <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
+                    <span *ngIf="isValid('correo')">El campo es
+                        requerido</span>
+                    <span *ngIf="form.controls['correo'].hasError('email')">
+                        No es un correo valido
+                    </span>
+                </div>
+            </div>
+            <div class="form__camp">
+                <label for="contacto" class="form__label">Contacto</label>
+                <input type="text" formControlName="contacto" id="contacto" class="form__input" placeholder="Contacto"
+                    autocomplete="off" [(ngModel)]="objEmpleado.contacto">
+            </div>
+            <div class="form__camp">
+                <label for="tarifa" class="form__label">Renumeración</label>
+                <input type="number" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
+                    autocomplete="off" [(ngModel)]="objEmpleado.tarifa_hora">
+                <span *ngIf="isValid('tarifa')" class="invalid">
+                    La Renumeración tiene que ser mayor a 0</span>
+            </div>
+            <div class="form__camp">
+                <label for="nacimiento" class="form__label">F. de Nacimiento</label>
+                <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input" autocomplete="off"
+                    [(ngModel)]="objEmpleado.fechaNacimiento">
+            </div>
+            <div class="form__camp">
+                <label for="area" class="form__label">Area</label>
+                <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let a of areas" value="{{a.idArea}}">{{a.nombre}}</option>
+                </select>
+            </div>
+            <div class="form__camp">
+                <label for="cargo" class="form__label">Cargo</label>
+                <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let c of cargos" value="{{c.idCargo}}">{{c.nombre}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="form__btn">
+        <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
+        <button (click)="postEmpleado($event)" class="btn__save" [disabled]="form.invalid"> <i class="bx bx-save"></i>
+            Guardar Registro</button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<header class="header">
+    <div class="header__content">
+        <div>
+            <a class="avatar__image header__name mode-toggle">
+                <i class='bx bx-moon'></i>
+                Modo Oscuro
+            </a>
+        </div>
+        <ul>
+            <div class="dropdown">
+                <li class="nav-item dropdown-items">
+                    <a (click)="menuToggle()" class="nav-link avatar__image">
+                        <span class="header__name">Raul Quispe Diaz</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </a>
+                    <div class="nav__dropdown-collapse">
+                        <div class="nav__dropdown-content">
+                            <a href="#" class="nav__dropdown-item">
+                                <i class="bx bx-user"></i>
+                                Mis Datos</a>
+                            <a href="#" class="nav__dropdown-item">
+                                <i class='bx bx-refresh'></i>
+                                Configuracion</a>
+                            <hr>
+                            <a href="#" class="nav__dropdown-item">
+                                <i class='bx bx-log-out'></i>
+                                Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
+</header>

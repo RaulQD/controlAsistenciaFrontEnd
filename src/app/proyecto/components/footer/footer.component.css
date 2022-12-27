@@ -1,0 +1,9 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 280px;
+  width: calc(100% - 280px);
+  height: auto;
+  padding: 0 2rem 0 1rem;
+  border-bottom: 1px solid var(--border-color);
+}

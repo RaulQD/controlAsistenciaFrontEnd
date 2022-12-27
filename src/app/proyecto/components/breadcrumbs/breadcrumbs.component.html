@@ -1,0 +1,16 @@
+<!-- Content Header (Page Header)-->
+
+<div class="breadcrumbs__content">
+    <!-- <div class="undercore">
+        <h3>{{titulo}}</h3>
+    </div> -->
+    <ul class="breadcrumbs">
+        <li class="breadcrumb__item">
+            <a routerLink="/dashboard" class="breadcrumb__first">
+                Dashboard</a>
+        </li>
+        <li *ngIf="titulo !== 'Dashboard'" class="breadcrumb__item active">{{titulo}}</li>
+        <li *ngIf="titulo === 'Dashboard'" class="breadcrumb__item active"></li>
+    </ul>
+
+</div>
