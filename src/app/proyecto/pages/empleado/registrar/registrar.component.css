@@ -64,6 +64,7 @@
   padding: 10px;
   border-radius: 0.5rem;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 .btn__danger {
   background-color: var(--red-color);
@@ -79,7 +80,14 @@
 .btn__save:hover {
   background-color: #1b0ecf;
 }
+span::before {
+  content: " *";
+  color: red;
+}
 .invalid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   color: #dc3545;
   font-size: 14px;
   width: 100%;

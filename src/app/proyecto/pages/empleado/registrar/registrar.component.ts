@@ -43,8 +43,8 @@ export class RegistrarComponent implements OnInit {
       dni: ['',[Validators.required, Validators.pattern('[0-9]{8}')]],
       correo: ['',[Validators.required, Validators.email]],
       contacto: ['',[Validators.required, Validators.pattern('[0-9]{9}')]],
-      direccion: ['',[Validators.required, Validators.pattern('[a-zA-Z0-9ñáéíóúüÁÉÍÓÚÜ ]{3,60}')]],
-      tarifa:[0,[Validators.required,Validators.min(0)]],
+      direccion: ['',[Validators.required]],
+      tarifa:[0,[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
       nacimiento: ['',[Validators.required]],
       area: ['',[Validators.required, Validators.min(1)]],
       cargo: ['',[Validators.required, Validators.min(1)]]
@@ -76,6 +76,10 @@ export class RegistrarComponent implements OnInit {
   
   postEmpleado(e:Event){
     e.preventDefault();
+    if(this.form.invalid){
+      this.form.markAllAsTouched();
+      return;
+    }
       this.empleadoService.postEmpleado(this.objEmpleado).subscribe((res) =>{
         Swal.fire(
           {title:'Registro guardado', text: res.errores, icon:'info'}).then(() =>{
@@ -84,27 +88,7 @@ export class RegistrarComponent implements OnInit {
         },(err) =>{
           Swal.fire({title:'Error', text: err.errores, icon:'error'})
         });
-        //LIMPIAR CAMPOS
-        this.cargos = [];
-        this.areas = [];
-        // this.form.reset();
-        this.objEmpleado={
-          idEmpleado: 0,
-          nombre: '',
-          apellido: '',
-          dni: '',
-          correo: '',
-          contacto: '',
-          direccion: '',
-          tarifa_hora: 0,
-          fechaNacimiento: new Date(),
-          area: {
-            idArea: -1,
-        },
-          cargo: {
-            idCargo: -1,
-          }
-        }
+        this.form.reset();
   }
   cancelar(){
     this.router.navigate(['/dashboard/listar-empleado'])
