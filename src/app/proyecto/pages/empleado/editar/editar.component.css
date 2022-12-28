@@ -23,6 +23,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
+.form__content div:last-of-type {
+  grid-column: span 2;
+}
 .form__label {
   color: var(--black-color);
   font-weight: 600;
@@ -79,4 +82,16 @@
 }
 .btn__save:hover {
   background-color: #0ec320;
+}
+.invalid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #dc3545;
+  font-size: 14px;
+  width: 100%;
+}
+span::before {
+  content: " *";
+  color: red;
 }

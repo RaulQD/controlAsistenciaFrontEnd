@@ -8,7 +8,7 @@
             <div class="form__camp">
                 <label for="nombre" class="form__label">Nombres</label>
                 <input type="text" formControlName="nombre" id="nombre" class="form__input"
-                    placeholder="Ingresar Nombre" autocomplete="off" [ngModel]="objEmpleado.nombre">
+                    placeholder="Ingresar Nombre" autocomplete="off" [(ngModel)]="objEmpleado.nombre">
                 <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
                     <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
                     <span *ngIf="isValidPattern('nombre')">
@@ -48,7 +48,7 @@
                     placeholder="example@example.com" autocomplete="off" [(ngModel)]="objEmpleado.correo">
                 <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
                     <span *ngIf="isValid('correo')">Ingresa tú correo electronico.</span>
-                    <span *ngIf="form.controls['correo'].hasError('email')">No es un correo valido.</span>
+                    <span *ngIf="isValidPattern('correo')">No es un correo valido.</span>
                 </div>
             </div>
             <div class="form__camp">

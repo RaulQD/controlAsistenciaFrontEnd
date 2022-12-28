@@ -27,6 +27,7 @@
                         <th>DNI</th>
                         <th>Area</th>
                         <th>Cargo</th>
+                        <th>Renumeración</th>
                         <th>F. de Creación</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -39,6 +40,7 @@
                         <td>{{e.dni}}</td>
                         <td>{{e.area!.nombre}}</td>
                         <td>{{e.cargo!.nombre}}</td>
+                        <td>S/.{{e.tarifa_hora}}.00</td>
                         <td>{{e.fechaRegistro}}</td>
                         <td>
                             {{e.estado === 1 ? 'Activo' : 'Inactivo'}}
