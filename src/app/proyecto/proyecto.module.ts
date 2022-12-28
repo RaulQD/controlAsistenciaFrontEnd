@@ -19,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AreaRegistrarComponent } from './pages/area/area-registrar/area-registrar.component';
 import { ListarAreasComponent } from './pages/area/listar-areas/listar-areas.component';
 import { EditarAreaComponent } from './pages/area/editar-area/editar-area.component';
+import { DetailsProfileComponent } from './pages/perfil/details-profile/details-profile.component';
 
 
 
@@ -38,7 +39,8 @@ import { EditarAreaComponent } from './pages/area/editar-area/editar-area.compon
     FooterComponent,
     AreaRegistrarComponent,
     ListarAreasComponent,
-    EditarAreaComponent
+    EditarAreaComponent,
+    DetailsProfileComponent
     // CargoComponent,
 
   ],

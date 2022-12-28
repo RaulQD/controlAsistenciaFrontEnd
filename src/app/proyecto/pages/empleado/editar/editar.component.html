@@ -127,18 +127,9 @@
                     </span>
                 </div>
             </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                    formControlName="estado">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                <div *ngIf="form.controls['estado'].errors && form.controls['estado'].touched" class="invalid">
-                    <span *ngIf="isValid('estado')">
-                        Elija un Estado.
-                    </span>
-                </div>
-                <!-- <label for="id_act_estado" class="form__label">Estado</label>
-                <select formControlName="estado" id="id_act_estado" class="form__input"
-                    [(ngModel)]="objEmpleado.estado">
+            <div class=" form__camp">
+                <label for="estado" class="form__label">Estado</label>
+                <select formControlName="estado" id="estado" class="form__input" [(ngModel)]="objEmpleado.estado">
                     <option value="-1">[Seleccionar]</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
@@ -150,7 +141,7 @@
                     <span *ngIf="form.controls['estado'].hasError('min')">
                         Elija minimo un Estado.
                     </span>
-                </div> -->
+                </div>
             </div>
         </div>
     </form>

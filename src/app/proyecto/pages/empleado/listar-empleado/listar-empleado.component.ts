@@ -15,7 +15,7 @@ export class ListarEmpleadoComponent implements OnInit{
 
   //Pagination
   page:number = 0;
-  size:number = 8;
+  size:number = 6;
   order:string = 'idEmpleado';
   asc:boolean = true;
 

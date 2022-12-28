@@ -1,8 +1,8 @@
 .header {
   position: absolute;
   top: 0;
-  left: 260px;
-  width: calc(100% - 260px);
+  left: 240px;
+  width: calc(100% - 240px);
   padding: 0 2rem 0 1rem;
   z-index: 100;
   border-bottom: 1px solid var(--border-color);
@@ -27,10 +27,15 @@
 }
 .header__name {
   font-size: 0.875rem;
-  color: var(--text-color-light);
+  color: var(--black-color);
 }
 .header__name i {
   color: var(--text-color-light);
+}
+.header__menu {
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--black--color);
 }
 .nav__dropdown-content {
   position: absolute;
@@ -72,4 +77,7 @@
 hr {
   margin: 0;
   border-width: 1px;
+}
+.show-menu {
+  left: 0;
 }

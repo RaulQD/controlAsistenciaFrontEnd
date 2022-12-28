@@ -11,8 +11,7 @@ export class NavbarComponent {
   constructor(){}
   
   menuToggle(){
-    const toggleMenu = document.querySelector('.nav__dropdown-content');
+    const toggleMenu  = document.querySelector('.nav__dropdown-content');
     toggleMenu?.classList.toggle('active')
   }
-  
 }

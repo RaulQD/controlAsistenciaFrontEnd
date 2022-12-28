@@ -46,8 +46,8 @@ export class RegistrarComponent implements OnInit {
       correo: ['',[Validators.required, Validators.pattern(emailPattern)]],
       contacto: ['',[Validators.required, Validators.pattern('[0-9]{9}')]],
       direccion: ['',[Validators.required]],
-      tarifa:[0,[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
-      nacimiento: ['',[Validators.required]],
+      tarifa:['',[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
+      fechaNacimiento: ['',[Validators.required]],
       area: ['',[Validators.required, Validators.min(1)]],
       cargo: ['',[Validators.required, Validators.min(1)]]
     });

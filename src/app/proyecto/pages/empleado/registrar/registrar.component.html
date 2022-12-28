@@ -12,7 +12,7 @@
                 <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
                     <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
                     <span *ngIf="isValidPattern('nombre')">
-                        El nombre es de 3 a 30 caracteres.
+                        Ingrese solamente letras.
                     </span>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     placeholder="Ingresar Apellidos" autocomplete="off" [(ngModel)]="objEmpleado.apellido">
                 <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched" class="invalid">
                     <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
-                    <span *ngIf="isValidPattern('apellido')">El apellido es de 3 a 30 caracteres.</span>
+                    <span *ngIf="isValidPattern('apellido')">Ingrese solamente letras.</span>
                 </div>
             </div>
             <div class="form__camp">
@@ -31,7 +31,7 @@
                     autocomplete="off" [(ngModel)]="objEmpleado.dni" required>
                 <div *ngIf="form.controls['dni'].errors && form.controls['dni'].touched" class="invalid">
                     <span *ngIf="isValid('dni')">Ingresa tú DNI.</span>
-                    <span *ngIf="isValidPattern('dni')">El DNI debe tener 8 dígitos.</span>
+                    <span *ngIf="isValidPattern('dni')">Ingrese solo números y deben ser 8 digitos.</span>
                 </div>
             </div>
             <div class="form__camp">
@@ -78,10 +78,11 @@
             </div>
             <div class="form__camp">
                 <label for="nacimiento" class="form__label">F. de Nacimiento</label>
-                <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input" autocomplete="off"
-                    [(ngModel)]="objEmpleado.fechaNacimiento">
-                <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched" class="invalid">
-                    <span *ngIf="isValid('nacimiento')">
+                <input type="date" formControlName="fechaNacimiento" id="nacimiento" class="form__input"
+                    autocomplete="off" [(ngModel)]="objEmpleado.fechaNacimiento">
+                <div *ngIf="form.controls['fechaNacimiento'].errors && form.controls['fechaNacimiento'].touched"
+                    class="invalid">
+                    <span *ngIf="isValid('fechaNacimiento')">
                         La Fecha de nacimiento es obligatoria.
                     </span>
                 </div>

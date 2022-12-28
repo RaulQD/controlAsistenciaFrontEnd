@@ -5,17 +5,19 @@
   /* padding: 1rem; */
 }
 .form__title {
+  background-color: #2560a4;
+  color: #fff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 1rem;
   font-weight: 600;
   font-size: 20px;
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem;
+  border-radius: 5px 5px 0 0;
 }
 
 .form {
-  border-top: 1px solid var(--second-table-color);
   padding: 1rem;
 }
 .form__content {
@@ -23,9 +25,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
-.form__content div:last-of-type {
-  grid-column: span 2;
-}
+
 .form__label {
   color: var(--black-color);
   font-weight: 600;

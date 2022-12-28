@@ -2,7 +2,7 @@
 
 .breadcrumbs__content {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   /* padding: 10px 10px 10px 0; */
   font-family: var(--font-main);
@@ -12,18 +12,26 @@
   border-radius: 0.5rem;
 }
 .breadcrumbs {
-  padding: 10px 10px 10px 1rem;
+  padding: 10px 1rem 10px 1rem;
   font-family: var(--font-main);
 }
 .breadcrumbs a {
-  color: var(--text-color);
+  /* color: var(--text-color); */
+}
+i {
+  color: var(--second-color);
+}
+.breadcrumb__flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .undercore a {
   color: var(--text-color);
 }
 .breadcrumb__item {
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 }
 .breadcrumb__item .breadcrumb__first {

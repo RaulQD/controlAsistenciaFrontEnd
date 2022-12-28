@@ -38,8 +38,9 @@ export class EditarComponent implements OnInit{
   },
     cargo: {
       idCargo: -1,
-    }
+    },
   }
+  /* Creating a form group with the name of the form and the validators. */
   form: FormGroup = this.formBuilder.group({
     nombre: ['',[Validators.required, Validators.pattern(nombreApellidoPattern)]],
     apellido: ['',[Validators.required, Validators.pattern(nombreApellidoPattern)]],
@@ -52,7 +53,7 @@ export class EditarComponent implements OnInit{
     registro:['',[Validators.required]],
     area: ['',[Validators.required, Validators.min(1)]],
     cargo: ['',[Validators.required, Validators.min(1)]],
-    estado:[1,[Validators.required]]
+    estado:[1,[Validators.required, Validators.min(1)]]
   });
   constructor(private utilsService: UtilService ,
             private empleadoService:EmpleadoService, 
@@ -64,20 +65,33 @@ export class EditarComponent implements OnInit{
   this.utilsService.getArea().subscribe((res)=>{this.areas = res});
 }
   ngOnInit(): void{
+    /* A way to get the value of the form. */
     this.form.valueChanges.pipe(
       debounceTime(500)
     ).subscribe(value =>{
       console.log(value);
     });
 
+  
+   /* Getting the id from the url and then it is getting the employee with that id. */
    this.id = this.activateRouter.snapshot.params[ 'id' ];
    this.empleadoService.getEmpleadoById(this.id).subscribe((res)=>{
      this.objEmpleado = res;
    },(error)=>{console.log(error)});
+  /**
+   * It returns true if the field has the error 'required'
+   * @param {string} campo - string
+   * @returns A boolean value.
+   */
   }
   isValid(campo:string){
     return this.form.controls[campo].hasError('required');
   }
+  /**
+   * It returns true if the field has an error of type pattern
+   * @param {string} campo - string
+   * @returns A boolean value.
+   */
   isValidPattern(campo:string){
     return this.form.controls[campo].hasError('pattern');
   }

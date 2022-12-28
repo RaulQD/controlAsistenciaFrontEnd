@@ -27,9 +27,9 @@
 body {
   min-height: 100vh;
   font-family: var(--font-main);
-  background-color: var(--panel-color);
+  /* background-color: var(--text-color); */
 }
-body.dark {
+/* body.dark {
   --primary-color: #3a3b3c;
   --second-color: #030508;
   --panel-color: #242526;
@@ -45,8 +45,9 @@ body.dark {
   --table-color: #f8f9fc;
   --second-table-color: #e3e6f0;
   --red-color: #ff0000;
-}
-ul {
+} */
+ul,
+li {
   list-style: none;
   padding: 0;
   margin: 0;
