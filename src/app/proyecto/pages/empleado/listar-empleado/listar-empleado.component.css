@@ -8,6 +8,7 @@
   padding: 1rem;
   border-bottom: 1px solid var(--second-table-color);
   background-color: #2560a4;
+  border-radius: 5px;
   color: #fff;
   font-size: 16px;
   font-weight: 600;

@@ -53,7 +53,7 @@ export class EditarComponent implements OnInit{
     registro:['',[Validators.required]],
     area: ['',[Validators.required, Validators.min(1)]],
     cargo: ['',[Validators.required, Validators.min(1)]],
-    estado:[1,[Validators.required, Validators.min(1)]]
+    estado:['',[Validators.required]]
   });
   constructor(private utilsService: UtilService ,
             private empleadoService:EmpleadoService, 

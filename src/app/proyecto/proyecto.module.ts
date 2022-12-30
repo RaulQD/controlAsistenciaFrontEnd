@@ -20,6 +20,7 @@ import { AreaRegistrarComponent } from './pages/area/area-registrar/area-registr
 import { ListarAreasComponent } from './pages/area/listar-areas/listar-areas.component';
 import { EditarAreaComponent } from './pages/area/editar-area/editar-area.component';
 import { DetailsProfileComponent } from './pages/perfil/details-profile/details-profile.component';
+import { ListarHorariosComponent } from './pages/listar-horarios/listar-horarios.component';
 
 
 
@@ -40,7 +41,8 @@ import { DetailsProfileComponent } from './pages/perfil/details-profile/details-
     AreaRegistrarComponent,
     ListarAreasComponent,
     EditarAreaComponent,
-    DetailsProfileComponent
+    DetailsProfileComponent,
+    ListarHorariosComponent
     // CargoComponent,
 
   ],

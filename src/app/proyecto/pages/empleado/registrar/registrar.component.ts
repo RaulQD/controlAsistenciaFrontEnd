@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import { debounceTime} from 'rxjs/operators';
 import { FormGroup,FormBuilder,FormControl, Validators } from '@angular/forms';
 import { dniPattern, emailPattern, nombreApellidoPattern } from 'src/app/shared/validators/validator';
+import { datePattern } from '../../../../shared/validators/validator';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-registrar',
@@ -47,10 +49,10 @@ export class RegistrarComponent implements OnInit {
       contacto: ['',[Validators.required, Validators.pattern('[0-9]{9}')]],
       direccion: ['',[Validators.required]],
       tarifa:['',[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
-      fechaNacimiento: ['',[Validators.required]],
-      area: ['',[Validators.required, Validators.min(1)]],
-      cargo: ['',[Validators.required, Validators.min(1)]]
-    });
+      nacimiento: ['',[Validators.required]],
+      area: [-1,[Validators.required, Validators.min(1)]],
+      cargo: [-1,[Validators.required, Validators.min(1)]]
+  });
   
    
   constructor(private utilsService:UtilService, 
@@ -86,16 +88,31 @@ export class RegistrarComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-      this.empleadoService.postEmpleado(this.objEmpleado).subscribe((res) =>{
-        Swal.fire(
-          {title:'Registro guardado', text: res.errores, icon:'info'}).then(() =>{
-            this.router.navigate(['/dashboard/listar-empleado']);
-          });
-        },(err) =>{
-          Swal.fire({title:'Error', text: err.errores, icon:'error'})
-        });
-        this.form.reset();
+      this.empleadoService.postEmpleado(this.objEmpleado).subscribe({ 
+        next:res =>{
+          this.form.reset();
+          Swal.fire({
+            title:'Mensaje',
+            text: res.errores,
+            icon:'info'
+          })
+          .then(() =>{
+            this.router.navigate(['/dashboard/listar-empleado'])
+          })
+      },error:(err) =>{
+        if(err instanceof HttpErrorResponse){
+          if(err.status === 400){
+            Swal.fire({
+              title:'Mensaje',
+              text: err.error.errores,
+              icon:'error'
+            })
+          }
+        }
+      }
+    });
   }
+  //CANCELAR
   cancelar(){
     this.router.navigate(['/dashboard/listar-empleado'])
   }
