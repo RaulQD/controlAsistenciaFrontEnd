@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { Empleado } from '../../interface/empelado.interface';
 
 
 @Component({

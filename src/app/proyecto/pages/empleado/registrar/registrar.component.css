@@ -24,6 +24,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
+.form__content .form__camp:nth-child(11) {
+  grid-column: 2/4;
+}
 .form__label {
   color: var(--black-color);
   font-size: 14px;

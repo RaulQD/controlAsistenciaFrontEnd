@@ -17,12 +17,10 @@ import { nombreApellidoPattern, dniPattern, emailPattern } from '../../../../sha
 })
 export class EditarComponent implements OnInit{
 
-
-
   cargos:Cargo[] =[];
   areas: Area[] =[];
 
-  id:string ="";
+  id:number =0;
   objEmpleado: Empleado = {
     idEmpleado: 0,
     nombre: '',
@@ -55,6 +53,7 @@ export class EditarComponent implements OnInit{
     cargo: ['',[Validators.required, Validators.min(1)]],
     estado:['',[Validators.required]]
   });
+
   constructor(private utilsService: UtilService ,
             private empleadoService:EmpleadoService, 
             private router:Router, 
@@ -71,19 +70,17 @@ export class EditarComponent implements OnInit{
     ).subscribe(value =>{
       console.log(value);
     });
-
-  
    /* Getting the id from the url and then it is getting the employee with that id. */
    this.id = this.activateRouter.snapshot.params[ 'id' ];
    this.empleadoService.getEmpleadoById(this.id).subscribe((res)=>{
      this.objEmpleado = res;
    },(error)=>{console.log(error)});
-  /**
+  }
+   /**
    * It returns true if the field has the error 'required'
    * @param {string} campo - string
    * @returns A boolean value.
    */
-  }
   isValid(campo:string){
     return this.form.controls[campo].hasError('required');
   }
@@ -102,7 +99,7 @@ export class EditarComponent implements OnInit{
       return;
     }
     this.empleadoService.putEmpleado(this.id,this.objEmpleado).subscribe((res )=>{
-      Swal.fire({title:'Actualización',text: res.errores, icon:'info'}).then(() =>{
+      Swal.fire({title:'Actualización',text: res.mensaje, icon:'info'}).then(() =>{
         this.router.navigate(['/dashboard/listar-empleado']);
       });
     });

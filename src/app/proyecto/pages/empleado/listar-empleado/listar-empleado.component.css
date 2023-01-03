@@ -66,6 +66,13 @@
 .listar__table .listar__tbody tr:hover {
   background-color: #ececec;
 }
+.listar__tbody .listar__perfil {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #c8c5c5;
+  padding: 2px;
+  border-radius: 10px;
+}
 /* .active p {
   display: inline-block;
   background-color: #0cdd0f;
@@ -73,7 +80,12 @@
   border-radius: 2.5rem;
   padding: 0.15rem 0.5rem;
 } */
-
+.listar__acciones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
 .listar__action-buttons {
   border: none;
   background-color: transparent;
@@ -82,7 +94,11 @@
   text-align: center;
 }
 .listar__action-buttons:nth-child(2) {
+  color: #cad314;
+}
+.listar__action-buttons:nth-child(3) {
   color: #ff0000;
+  padding: 0;
 }
 .form__content {
   display: grid;

@@ -89,7 +89,8 @@
             </div>
             <div class="form__camp">
                 <label for="registro" class="form__label">F. de Registro</label>
-                <input type="date" formControlName="registro" id="registro" class="form__input">
+                <input type="date" formControlName="registro" id="registro" class="form__input"
+                    [(ngModel)]="objEmpleado.fechaRegistro">
                 <div *ngIf=" form.controls['registro'].errors && form.controls['registro'].touched" class="invalid">
                     <span *ngIf="isValid('registro')">
                         La Fecha de registro es obligatoria.
@@ -98,9 +99,9 @@
             </div>
             <div class="form__camp">
                 <label for="area" class="form__label">Area</label>
-                <select formControlName="area" id="area" class="form__input">
-                    <option value="">[Seleccionar]</option>
-                    <option *ngFor="let a of areas" [value]="a.idArea">{{a.nombre}}</option>
+                <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let area of areas" value="{{area.idArea}}">{{area.nombre}}</option>
                 </select>
                 <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
                     <span *ngIf="isValid('area')">
@@ -113,9 +114,9 @@
             </div>
             <div class="form__camp">
                 <label for="cargo" class="form__label">Cargo</label>
-                <select formControlName="cargo" id="cargo" class="form__input">
-                    <option value="">[Seleccionar]</option>
-                    <option *ngFor="let c of cargos" [value]="c.idCargo">{{c.nombre}}</option>
+                <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
+                    <option value="-1">[Seleccionar]</option>
+                    <option *ngFor="let cargo of cargos" value="{{cargo.idCargo}}">{{cargo.nombre}}</option>
                 </select>
                 <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
                     <span *ngIf="isValid('cargo')">
@@ -128,11 +129,16 @@
             </div>
             <div class=" form__camp">
                 <label for="estado" class="form__label">Estado</label>
-                <select formControlName="estado" id="estado" class="form__input">
+                <select formControlName="estado" id="estado" class="form__input" [(ngModel)]="objEmpleado.estado">
                     <option value="">[Seleccionar]</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
+                <div *ngIf="form.controls['estado'].errors && form.controls['estado'].touched" class="invalid">
+                    <span *ngIf="isValid('estado')">
+                        Seleccione un Estado.
+                    </span>
+                </div>
             </div>
         </div>
     </form>

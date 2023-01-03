@@ -13,7 +13,7 @@ import { AreaRegistrarComponent } from './pages/area/area-registrar/area-registr
 import { ListarAreasComponent } from './pages/area/listar-areas/listar-areas.component';
 import { EditarComponent } from './pages/empleado/editar/editar.component';
 import { EditarAreaComponent } from './pages/area/editar-area/editar-area.component';
-import { DetailsProfileComponent } from './pages/perfil/details-profile/details-profile.component';
+import { DetailsProfileComponent } from './pages/empleado/details-profile/details-profile.component';
 
 
 const router: Routes = [
@@ -32,7 +32,7 @@ const router: Routes = [
       {path:'registrar-area',component:AreaRegistrarComponent,data:{titulo:'Areas'}},
       {path:'editar-area/:id',component:EditarAreaComponent, data:{titulo:'Areas'}},
       // {path:'cargo',component:CargoComponent,data:{titulo:'Cargos'}}
-      {path:'detalle-empleado',component:DetailsProfileComponent,data:{titulo:'Perfil de Usuario'}},
+      {path:'detalle-empleado/:id',component:DetailsProfileComponent,data:{titulo:'Perfil de Usuario'}},
 
     ]
   }

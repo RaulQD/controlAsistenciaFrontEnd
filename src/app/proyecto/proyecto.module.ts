@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { Routes } from '@angular/router';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,9 +19,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AreaRegistrarComponent } from './pages/area/area-registrar/area-registrar.component';
 import { ListarAreasComponent } from './pages/area/listar-areas/listar-areas.component';
 import { EditarAreaComponent } from './pages/area/editar-area/editar-area.component';
-import { DetailsProfileComponent } from './pages/perfil/details-profile/details-profile.component';
+import { DetailsProfileComponent } from './pages/empleado/details-profile/details-profile.component';
 import { ListarHorariosComponent } from './pages/listar-horarios/listar-horarios.component';
-
+import { EmpleadoService } from './service/empleado.service';
+import localeES from '@angular/common/locales/es';
+registerLocaleData(localeES, 'es')
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { ListarHorariosComponent } from './pages/listar-horarios/listar-horarios
     ProyectoRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[EmpleadoService, {provide: LOCALE_ID, useValue: 'es'}],
+
 })
 export class ProyectoModule { }

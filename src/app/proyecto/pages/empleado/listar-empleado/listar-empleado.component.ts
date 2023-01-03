@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UtilService } from 'src/app/proyecto/service/util.service';
 import { Cargo } from '../../../interface/cargo.interface';
 import { Area } from '../../../interface/area.interface';
@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar-empleado.component.css']
 })
 export class ListarEmpleadoComponent implements OnInit{
-
+  //DECOARADORES
+  @ViewChild('txtBuscar') txtBuscar!: ElementRef<HTMLInputElement>;
+  
   //Pagination
   page:number = 0;
   size:number = 6;
@@ -26,6 +28,7 @@ export class ListarEmpleadoComponent implements OnInit{
   empleados: Empleado[] =[];
   cargos:Cargo[] =[];
   areas: Area[] =[];
+  nombre: string = '';
 
   constructor( private empleadoService: EmpleadoService, private router:Router){
    
@@ -49,12 +52,24 @@ export class ListarEmpleadoComponent implements OnInit{
       this.getEmpleado();
     }
   }
+  buscar(){
+    const texto: string = this.txtBuscar.nativeElement.value;
+    this.empleadoService.getEmpledoByParams(texto).subscribe((res) =>{
+      this.empleados = res;
+    });
+    this.txtBuscar.nativeElement.value = '';
+  }
   getEmpleado(){
     this.empleadoService.getEmpleadoPage(this.page,this.size,this.order,this.asc).subscribe((res) => {
       this.empleados = res.content;
       this.isFirst = res.first;
       this.isLast = res.last;
     }); 
+  }
+  getEmpleadoByParams(){
+    this.empleadoService.getEmpledoByParams(this.nombre).subscribe((res) =>{
+      this.empleados = res;
+    })
   }
   exportExcel(){
     this.empleadoService.downloadExcel().subscribe((res) =>{

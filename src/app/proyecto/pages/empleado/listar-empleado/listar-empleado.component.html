@@ -10,7 +10,12 @@
                 <i class="bx bx-export"></i>
                 Actualizar empleados por excel
             </button>
+            <div class="">
+                <label for="buscar">Buscar: </label>
+                <input type="search" id="buscar" placeholder="searching" (keyup.enter)="buscar()" #txtBuscar>
+            </div>
         </div>
+
         <div class="listar__content-table">
             <div class="size">
                 <p>Mostrar</p>
@@ -36,12 +41,18 @@
                 <tbody class="listar__tbody">
                     <tr *ngFor=" let e of empleados">
                         <td>{{e.idEmpleado}}</td>
+                        <!-- <td>
+                            <img *ngIf="e?.foto" src="http://localhost:8090/api/empleado/uploads/img/{{e.foto}}"
+                                alt="{{e.foto}}" class="listar__perfil" />
+                            <img *ngIf="!e?.foto" src="http://localhost:8090/images/user.png" alt="sin foto"
+                                class="listar__perfil" />
+                        </td> -->
                         <td>{{e.nombre}} {{e.apellido}}</td>
                         <td>{{e.dni}}</td>
                         <td>{{e.area!.nombre}}</td>
                         <td>{{e.cargo!.nombre}}</td>
                         <td>S/.{{e.tarifa_hora}}.00</td>
-                        <td>{{e.fechaRegistro}}</td>
+                        <td>{{e.fechaRegistro | date:"dd-MM-yyyy"}}</td>
                         <td>
                             {{e.estado === 1 ? 'Activo' : 'Inactivo'}}
                         </td>
@@ -51,9 +62,14 @@
                                     class="listar__action-buttons">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                <a [routerLink]="['/dashboard/detalle-empleado/', e.idEmpleado]"
+                                    class="listar__action-buttons">
+                                    <i class="bx bx-show"></i>
+                                </a>
                                 <button type="button" class="listar__action-buttons">
                                     <i class="bx bx-trash"></i>
                                 </button>
+
                             </div>
                         </td>
                     </tr>

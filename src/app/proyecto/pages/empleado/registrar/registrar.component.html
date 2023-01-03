@@ -8,7 +8,7 @@
             <div class="form__camp">
                 <label for="nombre" class="form__label">Nombres</label>
                 <input type="text" formControlName="nombre" id="nombre" class="form__input"
-                    placeholder="Ingresar Nombre" autocomplete="off">
+                    placeholder="Ingresar Nombre" autocomplete="off" [(ngModel)]="objEmpleado.nombre">
                 <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
                     <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
                     <span *ngIf="isValidPattern('nombre')">
@@ -19,7 +19,7 @@
             <div class="form__camp">
                 <label for="apellido" class="form__label">Apellidos</label>
                 <input type="text" formControlName="apellido" id="apellido" class="form__input"
-                    placeholder="Ingresar Apellidos" autocomplete="off">
+                    placeholder="Ingresar Apellidos" autocomplete="off" [(ngModel)]="objEmpleado.apellido">
                 <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched" class="invalid">
                     <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
                     <span *ngIf="isValidPattern('apellido')">Ingrese solamente letras.</span>
@@ -63,7 +63,7 @@
             <div class="form__camp">
                 <label for="tarifa" class="form__label">Renumeración</label>
                 <input type="text" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
-                    autocomplete="off">
+                    autocomplete="off" [(ngModel)]="objEmpleado.tarifa_hora">
                 <div *ngIf="form.controls['tarifa'].errors && form.controls['tarifa'].touched" class="invalid">
                     <span *ngIf="isValid('tarifa')">
                         Ingresa una renumeración.
@@ -72,13 +72,14 @@
                         Ingresa solamente números.
                     </span>
                     <span *ngIf="form.controls['tarifa'].hasError('min')">
-                        La Renumeración tiene que ser mayor a 0.
+                        La Renumeración debe ser mayor a 0.
                     </span>
                 </div>
             </div>
             <div class="form__camp">
                 <label for="nacimiento" class="form__label">F. de Nacimiento</label>
-                <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input" autocomplete="off">
+                <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input" autocomplete="off"
+                    [(ngModel)]="objEmpleado.fechaNacimiento">
                 <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched" class="invalid">
                     <span *ngIf="isValid('nacimiento')">
                         La Fecha de nacimiento es obligatoria.
@@ -87,8 +88,8 @@
             </div>
             <div class="form__camp">
                 <label for="area" class="form__label">Area</label>
-                <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area.idArea">
-                    <option value="-1">[Seleccionar]</option>
+                <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
+                    <option value="-1"> --- Seleccionar --- </option>
                     <option *ngFor="let a of areas" [value]="a.idArea">{{a.nombre}}</option>
                 </select>
                 <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
@@ -102,8 +103,8 @@
             </div>
             <div class="form__camp">
                 <label for="cargo" class="form__label">Cargo</label>
-                <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo.idCargo">
-                    <option value="-1">[Seleccionar]</option>
+                <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
+                    <option value="-1"> --- Seleccionar --- </option>
                     <option *ngFor="let c of cargos" [value]="c.idCargo">{{c.nombre}}</option>
                 </select>
                 <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
@@ -115,6 +116,11 @@
                     </span>
                 </div>
             </div>
+            <!-- <div class="form__camp">
+                <label for="foto" class="form__label">Selescciona una foto</label>
+                <input (change)="selectPhoto($event)" type="file" formControlName="foto" id="foto" class="form__input"
+                    [(ngModel)]="objEmpleado.foto">
+            </div> -->
         </div>
     </form>
     <div class="form__btn">

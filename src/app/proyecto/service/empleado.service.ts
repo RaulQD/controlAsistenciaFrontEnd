@@ -1,8 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { AppSettings } from 'src/app/app.setting';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Empleado } from '../interface/empelado.interface';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { DatePipe, formatDate } from '@angular/common';
+import { map } from 'rxjs/operators';
 
 const baseUrl = AppSettings.API_ENDPOINT + '/empleado';
 
@@ -11,13 +15,25 @@ const baseUrl = AppSettings.API_ENDPOINT + '/empleado';
 })
 export class EmpleadoService{
 
-    constructor(private http:HttpClient){}
+    constructor(private http:HttpClient, private router:Router){}
 
     getEmpleado():Observable<Empleado[]>{
-        return this.http.get<Empleado[]>(baseUrl + '/listar');
+        return this.http.get<Empleado[]>(baseUrl + '/listar').pipe(
+            map(response =>{
+                let empleados:Empleado[] = response;
+                return empleados.map(empleado=>{
+                    let datePipe = new DatePipe('es');
+                    return empleado;
+                })
+            })
+        );
     }
-    getEmpleadoById(id:string):Observable<Empleado>{
+    getEmpleadoById(id:number):Observable<Empleado>{
         return this.http.get<Empleado>(baseUrl + '/buscar/' + id)
+    }
+    getEmpledoByParams(nombre:string):Observable<any>{
+        const params = new HttpParams().set('nombre',nombre);
+        return this.http.get(baseUrl+ '/buscarPorNombre',{params});
     }
     getEmpleadoPage(page:number,size:number,order:string,asc:boolean):Observable<any>{
         return this.http.get<any>(baseUrl + `/empleado?page=${page}&size=${size}&order=${order}&asc=${asc}`)
@@ -25,7 +41,7 @@ export class EmpleadoService{
     postEmpleado(empleado:Empleado):Observable<any>{
         return this.http.post<any>(baseUrl + '/registrar', empleado);
     }
-    putEmpleado(id:string,empleado: Empleado):Observable<any>{
+    putEmpleado(id:number,empleado: Empleado):Observable<any>{
         return this.http.put<any>(baseUrl + '/actualizar/' + id, empleado);
     }
     deleteEmpleado(id:string):Observable<any>{
@@ -34,4 +50,17 @@ export class EmpleadoService{
     downloadExcel(){
         return this.http.get(baseUrl + '/exportaExcel', {responseType:'blob'}, );
     }
-}
+    // updatePhoto(archivo: File, id:number):Observable<any>{
+    //     let formData = new FormData();
+    //     formData.append("archivo", archivo);
+    //     formData.append("id", id.toString());
+    //     return this.http.post<any>(baseUrl + '/upload', formData).pipe(
+    //         map( (response:any) => response.empleado as Empleado),
+    //         catchError(e =>{
+    //             console.error(e.error.mensaje);
+    //             Swal.fire('Error al subir la foto', e.error.mensaje, 'error');
+    //             return throwError(e);
+    //         })
+    //     );
+    }    
+    

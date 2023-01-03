@@ -19,25 +19,28 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegistrarComponent implements OnInit {
   
+     fotoSeleccionada!: File;
    //VARIABLES
   empleados: Empleado[] =[];
   cargos:Cargo[] =[];
   areas: Area[] =[];
   objEmpleado: Empleado = {
+    idEmpleado: 0,
     nombre: '',
     apellido: '',
     dni: '',
     correo: '',
     contacto: '',
     direccion: '',
-    tarifa_hora: 0,
+    tarifa_hora: 0.0,
     fechaNacimiento: new Date(),
     area: {
       idArea: -1,
   },
     cargo: {
       idCargo: -1,
-    }
+    },
+    foto:''
   }
 
   //VALIDAR FORMULARIO FORMGROUP
@@ -48,16 +51,17 @@ export class RegistrarComponent implements OnInit {
       correo: ['',[Validators.required, Validators.pattern(emailPattern)]],
       contacto: ['',[Validators.required, Validators.pattern('[0-9]{9}')]],
       direccion: ['',[Validators.required]],
-      tarifa:['',[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
+      tarifa:['0.0',[Validators.required,Validators.min(0),Validators.pattern('[0-9]{1,9}')]],
       nacimiento: ['',[Validators.required]],
       area: [-1,[Validators.required, Validators.min(1)]],
-      cargo: [-1,[Validators.required, Validators.min(1)]]
+      cargo: [-1,[Validators.required, Validators.min(1)]],
   });
   
    
   constructor(private utilsService:UtilService, 
               private empleadoService: EmpleadoService, 
               private router:Router,
+              private activatedRoute:ActivatedRoute,
               private formBuilder: FormBuilder) {
 
     this.utilsService.getCargo().subscribe((res) => this.cargos = res );
@@ -71,6 +75,7 @@ export class RegistrarComponent implements OnInit {
     ).subscribe(value =>{
       console.log(value);
     });
+   
   }
   //SI ES REQUERIDO
   isValid(campo:string){
@@ -88,32 +93,24 @@ export class RegistrarComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-      this.empleadoService.postEmpleado(this.objEmpleado).subscribe({ 
-        next:res =>{
+      this.empleadoService.postEmpleado(this.objEmpleado).subscribe((res) =>{
           this.form.reset();
+          this.router.navigate(['/dashboard/listar-empleado'])
           Swal.fire({
             title:'Mensaje',
-            text: res.errores,
+            text: res.mensaje,
             icon:'info'
-          })
-          .then(() =>{
-            this.router.navigate(['/dashboard/listar-empleado'])
-          })
-      },error:(err) =>{
-        if(err instanceof HttpErrorResponse){
-          if(err.status === 400){
-            Swal.fire({
-              title:'Mensaje',
-              text: err.error.errores,
-              icon:'error'
-            })
-          }
-        }
-      }
-    });
+          });
+      });
   }
+  // selectPhoto(event:any){
+  //   this.fotoSeleccionada = event.target.files[0];
+  //   console.log(this.fotoSeleccionada);
+
+  // }
   //CANCELAR
   cancelar(){
     this.router.navigate(['/dashboard/listar-empleado'])
   }
+ 
 }

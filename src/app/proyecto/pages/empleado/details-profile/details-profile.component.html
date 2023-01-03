@@ -1,0 +1,60 @@
+<div class="details">
+    <h4 class="details__title">{{titulo}}</h4>
+    <div class="details__content">
+        <div class="details__info">
+            <div class="details__info--item">
+                <span class="details__info--title">Nombre:</span>
+                <span class="details__info--value">{{objEmpleado.nombre}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Apellido:</span>
+                <span class="details__info--value">{{objEmpleado.apellido}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Nro. de DNI:</span>
+                <span class="details__info--value">{{objEmpleado.dni}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Nro. de Celular:</span>
+                <span class="details__info--value">{{objEmpleado.contacto}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Correo:</span>
+                <span class="details__info--value">{{objEmpleado.correo}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Fecha de Nacimiento:</span>
+                <span class="details__info--value">{{objEmpleado.fechaNacimiento | date:'EEEE,d MMMM y'}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Fecha de Ingreso:</span>
+                <span class="details__info--value">{{objEmpleado.fechaRegistro | date:'EEEE, d MMMM y'}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Cargo:</span>
+                <span class="details__info--value">{{objEmpleado.cargo?.nombre}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Area:</span>
+                <span class="details__info--value">{{objEmpleado.area?.nombre}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Salario:</span>
+                <span class="details__info--value">{{objEmpleado.tarifa_hora}}</span>
+            </div>
+            <div class="details__info--item">
+                <span class="details__info--title">Estado:</span>
+                <span class="details__info--value">{{objEmpleado.estado === 1?'Activo': 'Inactivo'}}</span>
+            </div>
+        </div>
+        <!-- <div class="details__img">
+            <img *ngIf="objEmpleado?.foto" src="http://localhost:8090/api/empleado/uploads/img/{{objEmpleado.foto}}"
+                alt="{{objEmpleado.foto}}" class="listar__perfil" />
+            <img *ngIf="!objEmpleado?.foto" src="http://localhost:8090/images/user.png" alt="sin foto"
+                class="listar__perfil" />
+        </div> -->
+    </div>
+    <div class="details__btn">
+        <a (click)="cancelar()" class="details__btn--retornar">Regresar</a>
+    </div>
+</div>
