@@ -13,6 +13,8 @@ import { FeriadoComponent } from './pages/feriado/feriado.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+
 import { ReporteAsistenciaComponent } from './pages/reporte/reporte-asistencia/reporte-asistencia.component';
 import { ReporteGeneralComponent } from './pages/reporte/reporte-general/reporte-general.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -22,6 +24,7 @@ import { EditarAreaComponent } from './pages/area/editar-area/editar-area.compon
 import { DetailsProfileComponent } from './pages/empleado/details-profile/details-profile.component';
 import { ListarHorariosComponent } from './pages/listar-horarios/listar-horarios.component';
 import { EmpleadoService } from './service/empleado.service';
+import { FiltrosPipe } from './pipe/filtros.pipe';
 import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es')
 
@@ -44,7 +47,8 @@ registerLocaleData(localeES, 'es')
     ListarAreasComponent,
     EditarAreaComponent,
     DetailsProfileComponent,
-    ListarHorariosComponent
+    ListarHorariosComponent,
+    FiltrosPipe,
     // CargoComponent,
 
   ],
@@ -52,7 +56,7 @@ registerLocaleData(localeES, 'es')
     CommonModule,
     ProyectoRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers:[EmpleadoService, {provide: LOCALE_ID, useValue: 'es'}],
 

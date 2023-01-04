@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar-empleado.component.css']
 })
 export class ListarEmpleadoComponent implements OnInit{
-  //DECOARADORES
-  @ViewChild('txtBuscar') txtBuscar!: ElementRef<HTMLInputElement>;
   
   //Pagination
   page:number = 0;
@@ -34,42 +32,42 @@ export class ListarEmpleadoComponent implements OnInit{
    
   }
   ngOnInit(): void {
-    this.getEmpleado();
+    // this.getEmpleado();
+    // this.getEmpleadoByParams();
   }
-  sort(){
-    this.asc = !this.asc;
-    this.getEmpleado();
-  }
-  rewind(){
-    if(!this.isFirst){
-      this.page--;
-      this.getEmpleado();
-    }
-  }
-  forward(){
-    if(!this.isLast){
-      this.page++;
-      this.getEmpleado();
-    }
-  }
-  buscar(){
-    const texto: string = this.txtBuscar.nativeElement.value;
-    this.empleadoService.getEmpledoByParams(texto).subscribe((res) =>{
-      this.empleados = res;
-    });
-    this.txtBuscar.nativeElement.value = '';
-  }
-  getEmpleado(){
-    this.empleadoService.getEmpleadoPage(this.page,this.size,this.order,this.asc).subscribe((res) => {
-      this.empleados = res.content;
-      this.isFirst = res.first;
-      this.isLast = res.last;
-    }); 
-  }
+  // sort(){
+  //   this.asc = !this.asc;
+  //   this.getEmpleado();
+  // }
+  // rewind(name?:string){
+  //   if(!this.isFirst){
+  //     this.page--;
+  //     this.getEmpleado();
+  //   }
+  // }
+  // forward(name?:string){
+  //   if(!this.isLast){
+  //     this.page++;
+  //     this.getEmpleado();
+  //   }
+  // }
+  
+  // getEmpleado(){
+  //   this.empleadoService.getEmpleadoPage(this.page,this.size,this.order).subscribe((res) => {
+  //     this.empleados = res.content;
+  //     this.isFirst = res.first;
+  //     this.isLast = res.last;
+  //   }); 
+  // }
   getEmpleadoByParams(){
-    this.empleadoService.getEmpledoByParams(this.nombre).subscribe((res) =>{
-      this.empleados = res;
-    })
+    console.log(this.nombre);
+    this.empleadoService.getEmpledoByParams(this.nombre).subscribe(empleados => {
+      console.log(empleados);
+      alert(empleados.mensaje);
+      this.empleados = empleados.lista;
+    },(err) => {
+      console.log(err);
+    });
   }
   exportExcel(){
     this.empleadoService.downloadExcel().subscribe((res) =>{

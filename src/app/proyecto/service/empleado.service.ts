@@ -17,14 +17,12 @@ export class EmpleadoService{
 
     constructor(private http:HttpClient, private router:Router){}
 
+
     getEmpleado():Observable<Empleado[]>{
         return this.http.get<Empleado[]>(baseUrl + '/listar').pipe(
             map(response =>{
                 let empleados:Empleado[] = response;
-                return empleados.map(empleado=>{
-                    let datePipe = new DatePipe('es');
-                    return empleado;
-                })
+                return empleados;
             })
         );
     }
@@ -32,11 +30,18 @@ export class EmpleadoService{
         return this.http.get<Empleado>(baseUrl + '/buscar/' + id)
     }
     getEmpledoByParams(nombre:string):Observable<any>{
-        const params = new HttpParams().set('nombre',nombre);
-        return this.http.get(baseUrl+ '/buscarPorNombre',{params});
-    }
-    getEmpleadoPage(page:number,size:number,order:string,asc:boolean):Observable<any>{
-        return this.http.get<any>(baseUrl + `/empleado?page=${page}&size=${size}&order=${order}&asc=${asc}`)
+        const params: HttpParams = new HttpParams().set('nombre',nombre);
+        return this.http.get<any>(baseUrl+ '/buscarPorNombre',{params})
+        .pipe(
+           catchError(err =>{
+            Swal.fire('Error al buscar', err.error.mensaje, 'error');
+            console.log(err.error.mensaje);
+            return throwError(err);
+           })
+        );
+    }   
+    getEmpleadoPage(page:number,size:number,order:string):Observable<any>{
+        return this.http.get<any>(baseUrl + `/empleado?page=${page}&size=${size}&order=${order}`)
     }
     postEmpleado(empleado:Empleado):Observable<any>{
         return this.http.post<any>(baseUrl + '/registrar', empleado);

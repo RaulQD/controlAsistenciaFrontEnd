@@ -10,19 +10,21 @@
                 <i class="bx bx-export"></i>
                 Actualizar empleados por excel
             </button>
-            <div class="">
-                <label for="buscar">Buscar: </label>
-                <input type="search" id="buscar" placeholder="searching" (keyup.enter)="buscar()" #txtBuscar>
-            </div>
         </div>
 
         <div class="listar__content-table">
             <div class="size">
-                <p>Mostrar</p>
-                <a (click)="sort()" class="sort">
-                    <i class='bx bxs-sort-alt'></i>
-                </a>
-                <p>registros</p>
+                <!-- <div class="listar__size--page">
+                    <p>Mostrar</p>
+                    <a (click)="sort()" class="sort">
+                        <i class='bx bxs-sort-alt'></i>
+                    </a>
+                    <p>registros</p>
+                </div> -->
+                <form class="listar__buscar" (ngSubmit)="getEmpleadoByParams()">
+                    <input type="text" class="listar__buscar--input" id="buscar" placeholder="searching" name="name"
+                        [(ngModel)]="nombre">
+                </form>
             </div>
             <table class="listar__table">
                 <thead class="listar__thead">
@@ -47,7 +49,7 @@
                             <img *ngIf="!e?.foto" src="http://localhost:8090/images/user.png" alt="sin foto"
                                 class="listar__perfil" />
                         </td> -->
-                        <td>{{e.nombre}} {{e.apellido}}</td>
+                        <td>{{e.nombre}} {{e.apellido}} </td>
                         <td>{{e.dni}}</td>
                         <td>{{e.area!.nombre}}</td>
                         <td>{{e.cargo!.nombre}}</td>
@@ -75,14 +77,15 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination">
+            <!-- <div class="pagination">
                 <a (click)="rewind()" class="previus">
                     <i class='bx bx-first-page'></i>
                 </a>
-                <a (click)="forward()" class="previus">
+                <a (click)="forward()" class="next">
                     <i class='bx bx-last-page'></i>
+
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

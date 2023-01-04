@@ -144,6 +144,7 @@
   padding: 1rem 0;
 }
 .previus,
+.next,
 .sort {
   font-size: 1.875rem;
   cursor: pointer;
@@ -154,15 +155,27 @@
 .previus:hover {
   color: var(--primary-color);
 }
-.sort:hover {
+.next:hover {
   color: var(--primary-color);
 }
 .size {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.size .listar__size--page {
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+}
+.listar__buscar .listar__buscar--input {
+  outline: none;
+  border: 1px solid var(--black-light-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 .btn__save {
   padding: 0.5rem 1rem;
