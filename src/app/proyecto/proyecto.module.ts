@@ -13,7 +13,6 @@ import { FeriadoComponent } from './pages/feriado/feriado.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
 
 import { ReporteAsistenciaComponent } from './pages/reporte/reporte-asistencia/reporte-asistencia.component';
 import { ReporteGeneralComponent } from './pages/reporte/reporte-general/reporte-general.component';
@@ -23,7 +22,9 @@ import { ListarAreasComponent } from './pages/area/listar-areas/listar-areas.com
 import { EditarAreaComponent } from './pages/area/editar-area/editar-area.component';
 import { DetailsProfileComponent } from './pages/empleado/details-profile/details-profile.component';
 import { ListarHorariosComponent } from './pages/listar-horarios/listar-horarios.component';
-import { EmpleadoService } from './service/empleado.service';
+import { UsuarioService } from './service/usuario.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
+
 import { FiltrosPipe } from './pipe/filtros.pipe';
 import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es')
@@ -49,6 +50,7 @@ registerLocaleData(localeES, 'es')
     DetailsProfileComponent,
     ListarHorariosComponent,
     FiltrosPipe,
+    PaginationComponent,
     // CargoComponent,
 
   ],
@@ -58,7 +60,10 @@ registerLocaleData(localeES, 'es')
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers:[EmpleadoService, {provide: LOCALE_ID, useValue: 'es'}],
+  exports: [
+    PaginationComponent
+  ],
+  providers: [ UsuarioService, { provide: LOCALE_ID, useValue: 'es' } ],
 
 })
 export class ProyectoModule { }

@@ -1,62 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import { Area } from 'src/app/proyecto/interface/area.interface';
 import { AreaService } from '../../../service/area.service';
-import { Empleado } from '../../../interface/empelado.interface';
+import { Usuario } from '../../../interface/usuario.interface';
 
 @Component({
   selector: 'app-listar-areas',
   templateUrl: './listar-areas.component.html',
-  styleUrls: ['./listar-areas.component.css']
+  styleUrls: [ './listar-areas.component.css' ]
 })
-export class ListarAreasComponent implements OnInit{
+export class ListarAreasComponent implements OnInit
+{
   //Pagination
-  page:number = 0;
-  size:number = 4;
-  order:string = 'idArea';
-  asc:boolean = true;
+  page: number = 0;
+  size: number = 4;
+  order: string = 'idArea';
+  asc: boolean = true;
 
-  isFirst =false;
+  isFirst = false;
   isLast = false;
   totalPages = Array<number>()
 
-  area: Area[] =[];
-  objArea:Area = {
+  area: Area[] = [];
+  objArea: Area = {
     idArea: 0,
-    nombre: '',
+    area: '',
   }
-    constructor(private areaService: AreaService){}
+  constructor(private areaService: AreaService) { }
   ngOnInit(): void
   {
-   this.getAreas();
+    this.getAreas();
   }
-  
 
-  sort(){
+
+  sort()
+  {
     this.asc = !this.asc;
     this.getAreas();
   }
-  rewind(){
-    if(!this.isFirst){
+  rewind()
+  {
+    if (!this.isFirst) {
       this.page--;
       this.getAreas();
     }
   }
-  forward(){
-    if(!this.isLast){
+  forward()
+  {
+    if (!this.isLast) {
       this.page++;
       this.getAreas();
     }
   }
-  getAreas(){
-   this.areaService.getAreaPage(this.page, this.size, this.order,this.asc).subscribe((res) =>{
-    this.area = res.content;
-    this.isFirst = res.first;
-    this.isLast = res.last;
+  getAreas()
+  {
+    this.areaService.getAreaPage(this.page, this.size, this.order, this.asc).subscribe((res) =>
+    {
+      this.area = res.content;
+      this.isFirst = res.first;
+      this.isLast = res.last;
     })
   }
-  deleteArea(area:Area){
-    this.areaService.deleteArea(area.idArea).subscribe( (res) => {
-      console.log("Area eliminada",area);
+  deleteArea(area: Area)
+  {
+    this.areaService.deleteArea(area.idArea).subscribe((res) =>
+    {
+      console.log("Area eliminada", area);
     })
   }
 }

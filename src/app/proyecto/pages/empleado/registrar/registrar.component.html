@@ -1,131 +1,212 @@
 <div class="container-registrar">
-    <h4 class="form__title">
-        <i class="bx bx-plus"></i>
-        Agregar Nuevo Empleado
-    </h4>
-    <form class="form" [formGroup]="form" (ngSubmit)="postEmpleado($event)">
-        <div class="form__content">
-            <div class="form__camp">
-                <label for="nombre" class="form__label">Nombres</label>
-                <input type="text" formControlName="nombre" id="nombre" class="form__input"
-                    placeholder="Ingresar Nombre" autocomplete="off" [(ngModel)]="objEmpleado.nombre">
-                <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
-                    <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
-                    <span *ngIf="isValidPattern('nombre')">
-                        Ingrese solamente letras.
-                    </span>
+    <header class="container__title">Agregar Nuevo Empleado</header>
+    <form class="form" autocomplete="off" [formGroup]="form" (ngSubmit)="postEmpleado($event)">
+        <div class=" form__personal">
+            <div class="form__details">
+                <h4 class="form__title">
+                    1.- Datos Personales
+                </h4>
+                <div class="form__field">
+                    <div class="form__inputs--field">
+                        <label for="nombre" class="form__label">Nombres</label>
+                        <input type="text" formControlName="nombre" id="nombre" class="form__input"
+                            placeholder="Ingresar Nombre" [(ngModel)]="objEmpleado.nombre">
+                        <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
+                            <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
+                            <span *ngIf="isValidPattern('nombre')">
+                                Ingrese solamente letras.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="apellidos" class="form__label">Apellidos</label>
+                        <input type="text" formControlName="apellido" id="apellido" class="form__input"
+                            placeholder="Ingresar Apellidos" [(ngModel)]="objEmpleado.apellido">
+                        <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
+                            <span *ngIf="isValidPattern('apellido')">Ingrese solamente letras.</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="dni" class="form__label">DNI</label>
+                        <input type="text" formControlName="dni" id="dni" class="form__input" placeholder="Ingresar Dni"
+                            autocomplete="off" [(ngModel)]="objEmpleado.dni" required>
+                        <div *ngIf="form.controls['dni'].errors && form.controls['dni'].touched" class="invalid">
+                            <span *ngIf="isValid('dni')">Ingresa tú DNI.</span>
+                            <span *ngIf="isValidPattern('dni')">Ingrese solo números y deben ser 8 digitos.</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="fechaNacimiento" class="form__label">Fecha de Nacimiento</label>
+                        <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input"
+                            autocomplete="off" [(ngModel)]="objEmpleado.fechaNacimiento">
+                        <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('nacimiento')">
+                                La Fecha de nacimiento es obligatoria.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="correo" class="form__label">Correo</label>
+                        <input type="email" formControlName="correo" id="correo" class="form__input"
+                            placeholder="example@example.com" autocomplete="off" [(ngModel)]="objEmpleado.correo">
+                        <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
+                            <span *ngIf="isValid('correo')">Ingresa tú correo electronico.</span>
+                            <span *ngIf="isValidPattern('correo')">No es un correo valido.</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="celular" class="form__label">Telefono Celular</label>
+                        <input type="text" formControlName="contacto" id="contacto" class="form__input"
+                            placeholder="Contacto" autocomplete="off" [(ngModel)]="objEmpleado.contacto">
+                        <div *ngIf="form.controls['contacto'].errors && form.controls['contacto'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('contacto')">Ingresa un número de contacto</span>
+                            <span *ngIf="isValidPattern('contacto')">El contacto debe tener 9 dígitos</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="direccion" class="form__label">Dirección</label>
+                        <input type="text" formControlName="direccion" id="direccion" class="form__input"
+                            placeholder="Ingresar dirección" autocomplete="off" [(ngModel)]="objEmpleado.direccion">
+                        <div *ngIf="form.controls['direccion'].errors && form.controls['direccion'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('direccion')">Ingresa tú dirección de domicilio.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form__camp">
-                <label for="apellido" class="form__label">Apellidos</label>
-                <input type="text" formControlName="apellido" id="apellido" class="form__input"
-                    placeholder="Ingresar Apellidos" autocomplete="off" [(ngModel)]="objEmpleado.apellido">
-                <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched" class="invalid">
-                    <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
-                    <span *ngIf="isValidPattern('apellido')">Ingrese solamente letras.</span>
+            <div class="form__details">
+                <h4 class="form__title">
+                    2.- Area y Cargo
+                </h4>
+                <div class="form__field">
+                    <div class="form__inputs--field">
+                        <label for="area" class="form__label">Tipo de Area</label>
+                        <select formControlName="area" id="area" class="form__input"
+                            [(ngModel)]="objEmpleado.area!.idArea">
+                            <option value="-1"> --- Seleccionar --- </option>
+                            <option *ngFor="let a of areas" [value]="a.idArea">{{a.area}}</option>
+                        </select>
+                        <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
+                            <span *ngIf="isValid('area')">
+                                El Area es obligatorio.
+                            </span>
+                            <span *ngIf="form.controls['area'].hasError('min')">
+                                Elija minimo una Area.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="cargo" class="form__label">Tipo de Cargo</label>
+                        <select formControlName="cargo" id="cargo" class="form__input"
+                            [(ngModel)]="objEmpleado.cargo!.idCargo">
+                            <option value="-1"> --- Seleccionar --- </option>
+                            <option *ngFor="let c of cargos" [value]="c.idCargo">{{c.cargo}}</option>
+                        </select>
+                        <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
+                            <span *ngIf="isValid('cargo')">
+                                El Cargo es obligatorio.
+                            </span>
+                            <span *ngIf="form.controls['cargo'].hasError('min')">
+                                Elija minimo un Cargo.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="tarifa" class="form__label">Renumeración</label>
+                        <input type="text" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
+                            autocomplete="off" [(ngModel)]="objEmpleado.tarifa">
+                        <div *ngIf="form.controls['tarifa'].errors && form.controls['tarifa'].touched" class="invalid">
+                            <span *ngIf="isValid('tarifa')">
+                                Ingresa una renumeración.
+                            </span>
+                            <span *ngIf="isValidPattern('tarifa')">
+                                Ingresa solamente números.
+                            </span>
+                            <span *ngIf="form.controls['tarifa'].hasError('min')">
+                                La Renumeración debe ser mayor a 0.
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form__camp">
-                <label for="dni" class="form__label">DNI</label>
-                <input type="text" formControlName="dni" id="dni" class="form__input" placeholder="Ingresar Dni"
-                    autocomplete="off" [(ngModel)]="objEmpleado.dni" required>
-                <div *ngIf="form.controls['dni'].errors && form.controls['dni'].touched" class="invalid">
-                    <span *ngIf="isValid('dni')">Ingresa tú DNI.</span>
-                    <span *ngIf="isValidPattern('dni')">Ingrese solo números y deben ser 8 digitos.</span>
+            <div class="form__details">
+                <h4 class="form__title">
+                    2.- Creación de usuario
+                </h4>
+                <div class="form__field">
+                    <div class="form__inputs--field">
+                        <label for="usuario" class="form__label">Usuario</label>
+                        <input type="text" formControlName="usuario" class="form__input" id="usuario"
+                            placeholder="Ingresa usuario" [(ngModel)]="objEmpleado.usuario" required>
+                        <div *ngIf="form.controls['usuario'].errors && form.controls['usuario'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('usuario')">Ingresa tú usuario</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="contrasena" class="form__label">Contraseña</label>
+                        <input type="password" formControlName="contrasena" class="form__input" id="contrasena"
+                            [(ngModel)]="objEmpleado.contrasena" placeholder="Ingresa contraseña" required>
+                        <div *ngIf="form.controls['usuario'].errors && form.controls['usuario'].touched"
+                            class="invalid">
+                            <span *ngIf="isValid('usuario')">Ingresa tú contraseña</span>
+                        </div>
+                    </div>
+                    <div class="form__inputs--field">
+                        <label for="roles" class="form__label">Roles del Usuario</label>
+                        <select formControlName="roles" id="roles" class="form__input"
+                            [(ngModel)]="objEmpleado.roles!.idRol">
+                            <option value="-1"> --- Seleccionar --- </option>
+                            <option *ngFor="let r of roles" [value]="r.idRol">{{r.roles}}</option>
+                        </select>
+                        <div *ngIf="form.controls['roles'].errors && form.controls['roles'].touched" class="invalid">
+                            <span *ngIf="isValid('roles')">
+                                El Rol es obligatorio.
+                            </span>
+                            <span *ngIf="form.controls['roles'].hasError('min')">
+                                Elija minimo un Rol.
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form__camp">
-                <label for="direccion" class="form__label">Dirección</label>
-                <input type="text" formControlName="direccion" id="direccion" class="form__input"
-                    placeholder="Ingresar dirección" autocomplete="off" [(ngModel)]="objEmpleado.direccion">
-                <div *ngIf="form.controls['direccion'].errors && form.controls['direccion'].touched" class="invalid">
-                    <span *ngIf="isValid('direccion')">Ingresa tú dirección de domicilio.</span>
+            <div class="form__details">
+                <div class="form__btn">
+                    <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
+                    <button (click)="postEmpleado($event)" class="btn__save"> <i class="bx bx-save"></i>
+                        Guardar Registro</button>
                 </div>
             </div>
-            <div class="form__camp">
-                <label for="correo" class="form__label">Correo</label>
-                <input type="email" formControlName="correo" id="correo" class="form__input"
-                    placeholder="example@example.com" autocomplete="off" [(ngModel)]="objEmpleado.correo">
-                <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
-                    <span *ngIf="isValid('correo')">Ingresa tú correo electronico.</span>
-                    <span *ngIf="isValidPattern('correo')">No es un correo valido.</span>
-                </div>
-            </div>
-            <div class="form__camp">
-                <label for="contacto" class="form__label">Contacto</label>
-                <input type="text" formControlName="contacto" id="contacto" class="form__input" placeholder="Contacto"
-                    autocomplete="off" [(ngModel)]="objEmpleado.contacto">
-                <div *ngIf="form.controls['contacto'].errors && form.controls['contacto'].touched" class="invalid">
-                    <span *ngIf="isValid('contacto')">Ingresa un número de contacto</span>
-                    <span *ngIf="isValidPattern('contacto')">El contacto debe tener 9 dígitos</span>
-                </div>
-            </div>
-            <div class="form__camp">
-                <label for="tarifa" class="form__label">Renumeración</label>
-                <input type="text" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
-                    autocomplete="off" [(ngModel)]="objEmpleado.tarifa_hora">
-                <div *ngIf="form.controls['tarifa'].errors && form.controls['tarifa'].touched" class="invalid">
-                    <span *ngIf="isValid('tarifa')">
-                        Ingresa una renumeración.
-                    </span>
-                    <span *ngIf="isValidPattern('tarifa')">
-                        Ingresa solamente números.
-                    </span>
-                    <span *ngIf="form.controls['tarifa'].hasError('min')">
-                        La Renumeración debe ser mayor a 0.
-                    </span>
-                </div>
-            </div>
-            <div class="form__camp">
-                <label for="nacimiento" class="form__label">F. de Nacimiento</label>
-                <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input" autocomplete="off"
-                    [(ngModel)]="objEmpleado.fechaNacimiento">
-                <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched" class="invalid">
-                    <span *ngIf="isValid('nacimiento')">
-                        La Fecha de nacimiento es obligatoria.
-                    </span>
-                </div>
-            </div>
-            <div class="form__camp">
-                <label for="area" class="form__label">Area</label>
-                <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
-                    <option value="-1"> --- Seleccionar --- </option>
-                    <option *ngFor="let a of areas" [value]="a.idArea">{{a.nombre}}</option>
-                </select>
-                <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
-                    <span *ngIf="isValid('area')">
-                        El Area es obligatorio.
-                    </span>
-                    <span *ngIf="form.controls['area'].hasError('min')">
-                        Elija minimo una Area.
-                    </span>
-                </div>
-            </div>
-            <div class="form__camp">
-                <label for="cargo" class="form__label">Cargo</label>
-                <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
-                    <option value="-1"> --- Seleccionar --- </option>
-                    <option *ngFor="let c of cargos" [value]="c.idCargo">{{c.nombre}}</option>
-                </select>
-                <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
-                    <span *ngIf="isValid('cargo')">
-                        El Cargo es obligatorio.
-                    </span>
-                    <span *ngIf="form.controls['cargo'].hasError('min')">
-                        Elija minimo un Cargo.
-                    </span>
-                </div>
-            </div>
-            <!-- <div class="form__camp">
-                <label for="foto" class="form__label">Selescciona una foto</label>
-                <input (change)="selectPhoto($event)" type="file" formControlName="foto" id="foto" class="form__input"
-                    [(ngModel)]="objEmpleado.foto">
-            </div> -->
         </div>
     </form>
-    <div class="form__btn">
-        <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
-        <button (click)="postEmpleado($event)" class="btn__save"> <i class="bx bx-save"></i>
-            Guardar Registro</button>
-    </div>
 </div>
+<!-- 
+            
+                <div class="form__camp">
+                    <label for="roles" class="form__label">Roles del Usuario</label>
+                    <select formCNntrolName="roles" id="roles" class="form__input"
+                        [(ngModel)]="objEmpleado.roles!.idRol">
+                        <option value="-1"> --- Seleccionar --- </option>
+                        <option *ngFor="let r of roles" [value]="r.idRol">{{r.roles}}</option>
+                    </select>
+                    <div *ngIf="form.controls['roles'].errors && form.controls['roles'].touched" class="invalid">
+                        <span *ngIf="isValid('roles')">
+                            El Rol es obligatorio.
+                        </span>
+                        <span *ngIf="form.controls['roles'].hasError('min')">
+                            Elija minimo un Rol.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="form__btn">
+            <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
+            <button (click)="postEmpleado($event)" class="btn__save"> <i class="bx bx-save"></i>
+                Guardar Registro</button>
+        </div>
+    </div> -->

@@ -7,32 +7,37 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-area-registrar',
   templateUrl: './area-registrar.component.html',
-  styleUrls: ['./area-registrar.component.css']
+  styleUrls: [ './area-registrar.component.css' ]
 })
-export class AreaRegistrarComponent {
+export class AreaRegistrarComponent
+{
 
-  objArea:Area ={
-    idArea:0,
-    nombre:'',
+  objArea: Area = {
+    idArea: 0,
+    area: '',
   }
 
-  constructor(private router:Router, private areaService:AreaService){}
+  constructor(private router: Router, private areaService: AreaService) { }
 
-  postArea(){
-    this.areaService.postArea(this.objArea).subscribe((res)=>{
+  postArea()
+  {
+    this.areaService.postArea(this.objArea).subscribe((res) =>
+    {
       Swal.fire(
-        {title:'Registro guardado', text: res.errores, icon:'info'}).then(() =>{
-          this.router.navigate(['/dashboard/listar-area']);
+        { title: 'Registro guardado', text: res.errores, icon: 'info' }).then(() =>
+        {
+          this.router.navigate([ '/dashboard/listar-area' ]);
         });
     })
     //LIMPIAR
     this.objArea = {
-      idArea:0,
-      nombre:'',
+      idArea: 0,
+      area: '',
     }
   }
 
-  cancelar(){
-    this.router.navigate(['/dashboard/listar-area'])
+  cancelar()
+  {
+    this.router.navigate([ '/dashboard/listar-area' ])
   }
 }

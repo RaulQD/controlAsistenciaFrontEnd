@@ -29,7 +29,7 @@
                 <tbody class="listar__tbody">
                     <tr *ngFor="let a of area">
                         <td>{{a.idArea}}</td>
-                        <td>{{a.nombre}}</td>
+                        <td>{{a.area}}</td>
                         <td>
                             <div class="listar__acciones">
                                 <a [routerLink]="['/dashboard/editar-area/',a.idArea]" class="listar__action-buttons">

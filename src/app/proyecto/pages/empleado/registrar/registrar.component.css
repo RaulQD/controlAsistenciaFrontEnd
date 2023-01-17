@@ -1,8 +1,24 @@
-.container-registrar {
-  background-color: var(--panel-color);
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  border-radius: 0.5rem;
-  /* padding: 1rem; */
+.container-registrar{
+  margin-bottom: 3rem;
+}
+.container__title{
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 2rem;
+  /* color:#817e7e; */
+}
+.container-registrar .container__title{
+  position: relative;
+}
+.container-registrar .container__title::before{
+  content:"";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 3px;
+  width: 27px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
 }
 .form__title {
   background-color: #2560a4;
@@ -10,53 +26,57 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 1rem;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   padding: 1rem;
   border-radius: 5px 5px 0 0;
 }
-.form {
-  padding: 1rem;
+.form__personal{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-.form__content {
+.form__details{
+  background-color: var(--panel-color);
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  border-radius: 0.5rem;
+}
+.form__field{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  padding: 1rem;
 }
-.form__content .form__camp:nth-child(11) {
-  grid-column: 2/4;
+.form__inputs--field{
+  display:flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .form__label {
   color: var(--black-color);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .form__camp:has(input:required) .form__label::after {
   content: " *";
   color: red;
 }
-.form__camp {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 .form__input {
   outline: none;
   border: 1px solid var(--black-light-color);
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.9375rem;
   border-radius: 5px;
-  font-size: 13px;
+  height: 35px;
+  font-size: 14px;
+  font-weight: 400;
+  color:#333333;
 }
 .form__btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  background-color: #ececec;
-  border: 1px solid #d4d4d4;
-  padding: 0.625rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* align-items: center; */
+  gap: 2rem;
+  padding: 1rem 4rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

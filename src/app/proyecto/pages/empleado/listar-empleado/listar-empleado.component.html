@@ -21,12 +21,18 @@
                     </a>
                     <p>registros</p>
                 </div> -->
-                <form class="listar__buscar" (ngSubmit)="getEmpleadoByParams()">
-                    <input type="text" class="listar__buscar--input" id="buscar" placeholder="searching" name="name"
+                <form class="listar__buscar" autocomplete="off">
+                    <input type="text" class="listar__buscar--input" placeholder="searching" name="nombre"
                         [(ngModel)]="nombre">
+                    <button>filtrar</button>
                 </form>
+
+
             </div>
-            <table class="listar__table">
+            <div *ngIf="error" class="alert">
+                No hay más registro que listar.
+            </div>
+            <table *ngIf="!error" class="listar__table">
                 <thead class="listar__thead">
                     <tr>
                         <th>Código</th>
@@ -41,8 +47,9 @@
                     </tr>
                 </thead>
                 <tbody class="listar__tbody">
+
                     <tr *ngFor=" let e of empleados">
-                        <td>{{e.idEmpleado}}</td>
+                        <td>{{e.idUsuario}}</td>
                         <!-- <td>
                             <img *ngIf="e?.foto" src="http://localhost:8090/api/empleado/uploads/img/{{e.foto}}"
                                 alt="{{e.foto}}" class="listar__perfil" />
@@ -51,20 +58,23 @@
                         </td> -->
                         <td>{{e.nombre}} {{e.apellido}} </td>
                         <td>{{e.dni}}</td>
-                        <td>{{e.area!.nombre}}</td>
-                        <td>{{e.cargo!.nombre}}</td>
-                        <td>S/.{{e.tarifa_hora}}.00</td>
+                        <td>{{e.area!.area}}</td>
+                        <td>{{e.cargo!.cargo}}</td>
+                        <td>S/.{{e.tarifa}}.00</td>
                         <td>{{e.fechaRegistro | date:"dd-MM-yyyy"}}</td>
                         <td>
-                            {{e.estado === 1 ? 'Activo' : 'Inactivo'}}
+                            <span class="badge " [ngClass]="[e.estado === 'Activo' ? ' text-bg-success' : '', 
+                               e.estado === 'Inactivo' ? ' text-bg-danger' : '']">
+                                {{e.estado}}
+                            </span>
                         </td>
                         <td>
                             <div class="listar__acciones">
-                                <a [routerLink]="['/dashboard/editar-empleado/',e.idEmpleado]"
+                                <a [routerLink]="['/dashboard/editar-empleado/',e.idUsuario]"
                                     class="listar__action-buttons">
                                     <i class="bx bx-edit"></i>
                                 </a>
-                                <a [routerLink]="['/dashboard/detalle-empleado/', e.idEmpleado]"
+                                <a [routerLink]="['/dashboard/detalle-empleado/', e.idUsuario]"
                                     class="listar__action-buttons">
                                     <i class="bx bx-show"></i>
                                 </a>
@@ -77,17 +87,26 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- <div class="pagination">
-                <a (click)="rewind()" class="previus">
-                    <i class='bx bx-first-page'></i>
-                </a>
-                <a (click)="forward()" class="next">
-                    <i class='bx bx-last-page'></i>
-
-                </a>
-            </div> -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination ">
+                    <li class="page-item ">
+                        <a class="page-link " (click)="previus()" aria-label="Previous" style="cursor:pointer;">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of totalPages; let i = index">
+                        <a class="page-link" (click)="setPage(i)" style="cursor:pointer;">{{i + 1}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" (click)="next()" aria-label="Next" style="cursor:pointer;">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
+
 </div>
 <!-- Modal Actualizar-->
 <div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

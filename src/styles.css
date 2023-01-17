@@ -55,14 +55,7 @@ li {
 a {
   text-decoration: none;
 }
-h1,
+h1, h2,h3,h4,
 p {
   margin: 0;
-}
-.undercore::after {
-  content: "";
-  background-color: var(--primary-color);
-  width: 6.25rem;
-  height: 0.25rem;
-  display: block;
 }

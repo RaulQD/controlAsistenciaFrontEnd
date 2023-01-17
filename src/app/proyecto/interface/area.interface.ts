@@ -1,6 +1,7 @@
 
-export interface Area {
+export interface Area
+{
     idArea?: number;
-    nombre?: string;
+    area?: string;
 }
 

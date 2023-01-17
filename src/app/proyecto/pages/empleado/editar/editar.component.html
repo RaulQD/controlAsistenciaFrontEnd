@@ -64,7 +64,7 @@
             <div class="form__camp">
                 <label for="tarifa" class="form__label">Renumeración</label>
                 <input type="number" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
-                    autocomplete="off" [(ngModel)]="objEmpleado.tarifa_hora">
+                    autocomplete="off" [(ngModel)]="objEmpleado.tarifa">
                 <div *ngIf="form.controls['tarifa'].errors && form.controls['tarifa'].touched" class="invalid">
                     <span *ngIf="isValid('tarifa')">
                         Ingresa una renumeración.
@@ -101,7 +101,7 @@
                 <label for="area" class="form__label">Area</label>
                 <select formControlName="area" id="area" class="form__input" [(ngModel)]="objEmpleado.area!.idArea">
                     <option value="-1">[Seleccionar]</option>
-                    <option *ngFor="let area of areas" value="{{area.idArea}}">{{area.nombre}}</option>
+                    <option *ngFor="let area of areas" value="{{area.idArea}}">{{area.area}}</option>
                 </select>
                 <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
                     <span *ngIf="isValid('area')">
@@ -116,7 +116,7 @@
                 <label for="cargo" class="form__label">Cargo</label>
                 <select formControlName="cargo" id="cargo" class="form__input" [(ngModel)]="objEmpleado.cargo!.idCargo">
                     <option value="-1">[Seleccionar]</option>
-                    <option *ngFor="let cargo of cargos" value="{{cargo.idCargo}}">{{cargo.nombre}}</option>
+                    <option *ngFor="let cargo of cargos" value="{{cargo.idCargo}}">{{cargo.cargo}}</option>
                 </select>
                 <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
                     <span *ngIf="isValid('cargo')">
@@ -131,8 +131,8 @@
                 <label for="estado" class="form__label">Estado</label>
                 <select formControlName="estado" id="estado" class="form__input" [(ngModel)]="objEmpleado.estado">
                     <option value="">[Seleccionar]</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
                 </select>
                 <div *ngIf="form.controls['estado'].errors && form.controls['estado'].touched" class="invalid">
                     <span *ngIf="isValid('estado')">

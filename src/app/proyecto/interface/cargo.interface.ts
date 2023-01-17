@@ -1,4 +1,5 @@
-export interface Cargo {
+export interface Cargo
+{
     idCargo?: number;
-    nombre?: string;
+    cargo?: string;
 }

@@ -1,0 +1,23 @@
+.pagination {
+  /* background-color: #f1f1f1; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 0.75rem; */
+  padding: 1rem 0;
+}
+.previus,
+.next,
+.sort {
+  font-size: 1.875rem;
+  cursor: pointer;
+  color: var(--black-light-color);
+  transition: 0.3s ease-in-out;
+  line-height: 0;
+}
+.previus:hover {
+  color: var(--primary-color);
+}
+.next:hover {
+  color: var(--primary-color);
+}

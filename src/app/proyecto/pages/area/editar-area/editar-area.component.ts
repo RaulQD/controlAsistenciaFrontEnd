@@ -7,41 +7,48 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-editar-area',
   templateUrl: './editar-area.component.html',
-  styleUrls: ['./editar-area.component.css']
+  styleUrls: [ './editar-area.component.css' ]
 })
-export class EditarAreaComponent implements OnInit{
+export class EditarAreaComponent implements OnInit
+{
 
-  id:string ="";
-  objArea:Area ={
-    idArea:0,
-    nombre:'',
+  id: string = "";
+  objArea: Area = {
+    idArea: 0,
+    area: '',
 
   }
-  constructor(private areaService:AreaService, private activateRouter:ActivatedRoute,private router:Router) { }
+  constructor(private areaService: AreaService, private activateRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void
   {
-    this.id = this.activateRouter.snapshot.params['id'];
-    this.areaService.getAreaById(this.id).subscribe((res) =>{
+    this.id = this.activateRouter.snapshot.params[ 'id' ];
+    this.areaService.getAreaById(this.id).subscribe((res) =>
+    {
       this.objArea = res;
-    },(err) =>{
+    }, (err) =>
+    {
       console.log(err);
     })
   }
-  putArea(){
-    this.areaService.putArea(this.id,this.objArea).subscribe((res) =>{
+  putArea()
+  {
+    this.areaService.putArea(this.id, this.objArea).subscribe((res) =>
+    {
       console.log(res);
-      Swal.fire({title:'Actualización',text: res.mensaje, icon:'info'}).then(() =>{
-        this.router.navigate(['/dashboard/listar-area']);
+      Swal.fire({ title: 'Actualización', text: res.mensaje, icon: 'info' }).then(() =>
+      {
+        this.router.navigate([ '/dashboard/listar-area' ]);
       });
     });
     //LIMPIAR CAMPOS
     this.objArea = {
-      idArea:0,
-      nombre:'',
+      idArea: 0,
+      area: '',
     }
   }
-  cancelar(){
-    this.router.navigate(['/dashboard/listar-area'])
+  cancelar()
+  {
+    this.router.navigate([ '/dashboard/listar-area' ])
   }
 }
