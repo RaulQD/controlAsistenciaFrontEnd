@@ -5,17 +5,18 @@
                 <img class="login__image" src="../../../assets/img/programmer.png" alt="programmer">
             </div>
             <h2 class="login__title">Inicia sesión</h2>
-            <form class="forms">
+            <form class="forms" [formGroup]="form" (ngSubmit)="login()">
                 <div class="forms__camp">
-                    <input type="text" class="forms__input" id="usuario" name="usuario" placeholder="Usuario">
+                    <input type="text" class="forms__input" id="usuario" formControlName="usuario"
+                        placeholder="Usuario">
                 </div>
                 <div class="forms__camp">
-                    <input type="password" class="forms__input" id="contraseña" name="contraseña"
+                    <input type="password" class="forms__input" id="contraseña" formControlName="contrasena"
                         placeholder="Contraseña">
                     <i class='bx bx-hide forms__icon'></i>
                 </div>
                 <div class="forms__button">
-                    <button type="button" class="forms__button--content" routerLink="/dashboard">Ingresar</button>
+                    <button type="submit" class="forms__button--content">Ingresar</button>
                 </div>
                 <div class="forms__href">
                     <a> ¿Olvidaste tu contraseña? </a>

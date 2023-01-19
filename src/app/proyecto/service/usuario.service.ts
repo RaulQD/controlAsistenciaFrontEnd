@@ -5,7 +5,6 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Usuario } from '../interface/usuario.interface';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { DatePipe, formatDate } from '@angular/common';
 import { map, tap } from 'rxjs/operators';
 
 const baseUrl = AppSettings.API_ENDPOINT + '/empleado';
@@ -15,6 +14,8 @@ const baseUrl = AppSettings.API_ENDPOINT + '/empleado';
 })
 export class UsuarioService
 {
+
+    header = new HttpHeaders().set('Content-Type', 'application/json');
 
     constructor(private http: HttpClient, private router: Router) { }
 
@@ -54,7 +55,7 @@ export class UsuarioService
     // }
     postEmpleado(usuario: Usuario): Observable<any>
     {
-        return this.http.post<any>(baseUrl + '/registrar', usuario);
+        return this.http.post<any>(baseUrl + '/registrar', usuario)
     }
     putEmpleado(id: number, usuario: Usuario): Observable<any>
     {

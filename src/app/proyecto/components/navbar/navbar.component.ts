@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../auth/security/service/token.service';
 
 
 
@@ -10,11 +12,16 @@ import { Component } from '@angular/core';
 export class NavbarComponent
 {
 
-  constructor() { }
+  constructor(private router: Router,
+    private tokenService: TokenService) { }
 
   menuToggle()
   {
     const toggleMenu = document.querySelector('.nav__dropdown-content');
     toggleMenu?.classList.toggle('active')
+  }
+  logout()
+  {
+    this.tokenService.logOut();
   }
 }

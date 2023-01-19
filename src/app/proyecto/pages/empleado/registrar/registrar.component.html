@@ -14,7 +14,7 @@
                         <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
                             <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
                             <span *ngIf="isValidPattern('nombre')">
-                                Ingrese solamente letras.
+                                Ingrese minimo 3 caracteres.
                             </span>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched"
                             class="invalid">
                             <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
-                            <span *ngIf="isValidPattern('apellido')">Ingrese solamente letras.</span>
+                            <span *ngIf="isValidPattern('apellido')"> Ingrese minimo 3 caracteres.</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
@@ -40,7 +40,7 @@
                     <div class="form__inputs--field">
                         <label for="fechaNacimiento" class="form__label">Fecha de Nacimiento</label>
                         <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input"
-                            autocomplete="off" [(ngModel)]="objEmpleado.fechaNacimiento">
+                            [(ngModel)]="objEmpleado.fechaNacimiento">
                         <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched"
                             class="invalid">
                             <span *ngIf="isValid('nacimiento')">
@@ -51,7 +51,7 @@
                     <div class="form__inputs--field">
                         <label for="correo" class="form__label">Correo</label>
                         <input type="email" formControlName="correo" id="correo" class="form__input"
-                            placeholder="example@example.com" autocomplete="off" [(ngModel)]="objEmpleado.correo">
+                            placeholder="example@example.com" [(ngModel)]="objEmpleado.correo">
                         <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
                             <span *ngIf="isValid('correo')">Ingresa tú correo electronico.</span>
                             <span *ngIf="isValidPattern('correo')">No es un correo valido.</span>
@@ -60,7 +60,7 @@
                     <div class="form__inputs--field">
                         <label for="celular" class="form__label">Telefono Celular</label>
                         <input type="text" formControlName="contacto" id="contacto" class="form__input"
-                            placeholder="Contacto" autocomplete="off" [(ngModel)]="objEmpleado.contacto">
+                            placeholder="Contacto" [(ngModel)]="objEmpleado.contacto">
                         <div *ngIf="form.controls['contacto'].errors && form.controls['contacto'].touched"
                             class="invalid">
                             <span *ngIf="isValid('contacto')">Ingresa un número de contacto</span>
@@ -70,7 +70,7 @@
                     <div class="form__inputs--field">
                         <label for="direccion" class="form__label">Dirección</label>
                         <input type="text" formControlName="direccion" id="direccion" class="form__input"
-                            placeholder="Ingresar dirección" autocomplete="off" [(ngModel)]="objEmpleado.direccion">
+                            placeholder="Ingresar dirección" [(ngModel)]="objEmpleado.direccion">
                         <div *ngIf="form.controls['direccion'].errors && form.controls['direccion'].touched"
                             class="invalid">
                             <span *ngIf="isValid('direccion')">Ingresa tú dirección de domicilio.</span>

@@ -109,6 +109,7 @@ export class RegistrarComponent implements OnInit
       this.form.markAllAsTouched();
       return;
     }
+
     this.usuarioService.postEmpleado(this.objEmpleado).subscribe((res) =>
     {
       this.form.reset();
