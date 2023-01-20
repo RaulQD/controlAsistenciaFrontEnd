@@ -9,7 +9,7 @@
             <div class="dropdown">
                 <li class="nav-item dropdown-items">
                     <a (click)="menuToggle()" class="nav-link avatar__image">
-                        <span class="header__name">Raul Quispe Diaz</span>
+                        <span class="header__name" *ngIf="isLogged">{{nombreCompleto}}</span>
                         <i class="bx bx-chevron-down"></i>
                     </a>
                     <div class="nav__dropdown-collapse">

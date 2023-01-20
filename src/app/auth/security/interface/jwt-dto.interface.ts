@@ -3,7 +3,7 @@ export interface JwtDto
 {
     token: string;
     bearer: string;
-    nombre: string;
+    nombreCompleto: string;
     usuario: string;
     authorities: string[];
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
-
+const NOMBRE_COMPLETO = 'AuthNombreCompleto';
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +32,15 @@ export class TokenService
     {
         return window.localStorage.getItem(USERNAME_KEY);
     }
+    setNombreCompleto(nombreCompleto: string)
+    {
+        window.localStorage.removeItem(NOMBRE_COMPLETO);
+        window.localStorage.setItem(NOMBRE_COMPLETO, nombreCompleto);
+    }
+    getNombreCompleto(): any
+    {
+        return window.localStorage.getItem(NOMBRE_COMPLETO);
+    }
     setAuthorities(authorities: string[]): void
     {
         window.localStorage.removeItem(AUTHORITIES_KEY);
@@ -50,7 +59,6 @@ export class TokenService
     }
     logOut()
     {
-        window.localStorage.clear();
-        window.location.reload();
+        localStorage.clear();
     }
 }

@@ -2,7 +2,7 @@ import { Area } from "./area.interface";
 import { Cargo } from './cargo.interface';
 import { Rol } from './rol.interface';
 
-export interface Usuario
+export class Usuario
 {
     idUsuario?: number;
     nombre?: string;

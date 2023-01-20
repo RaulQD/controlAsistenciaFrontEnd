@@ -19,6 +19,11 @@ export class AuthService
   login(usuario: string, contrasena: string): Observable<JwtDto>
   {
     const body = { usuario, contrasena }
-    return this.http.post<JwtDto>(baseUrl + '/login', body);
+    return this.http.post<JwtDto>(baseUrl + '/login', body).pipe(
+      map((response: any) =>
+      {
+        return response;
+      })
+    );
   }
 }
