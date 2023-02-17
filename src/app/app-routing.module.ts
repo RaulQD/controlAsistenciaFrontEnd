@@ -5,35 +5,35 @@ import { Routes, RouterModule } from '@angular/router';
 
 const router: Routes = [
   {
-    path:'',
-    redirectTo:'auth',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   },
   {
-    path:'auth',
-    loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path:'dashboard',
-    loadChildren:() => import('./proyecto/proyecto.module').then(m => m.ProyectoModule)
+    path: 'dashboard',
+    loadChildren: () => import('./proyecto/proyecto.module').then(m => m.ProyectoModule)
   },
   {
-    path:'404',
+    path: '404',
     component: PageNotFoundComponent
   },
   {
-    path:'**',
-    redirectTo:'404'
+    path: '**',
+    redirectTo: '404'
   }
 ]
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(router,{useHash:true}),
+    RouterModule.forRoot(router),
     CommonModule
   ],
-  exports:[
+  exports: [
     RouterModule
   ]
 })

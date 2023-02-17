@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppSettings } from 'src/app/app.setting';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Area } from '../interface/area.interface';
 import { Cargo } from '../interface/cargo.interface';
-import { Rol } from '../interface/rol.interface';
 
 
 const baseUrlUtil = AppSettings.API_ENDPOINT;
@@ -14,8 +13,6 @@ const baseUrlUtil = AppSettings.API_ENDPOINT;
 })
 export class UtilService
 {
-
-
   constructor(private http: HttpClient) { }
 
   getArea(): Observable<Area[]>
@@ -25,9 +22,5 @@ export class UtilService
   getCargo(): Observable<Cargo[]>
   {
     return this.http.get<Cargo[]>(baseUrlUtil + "/cargos");
-  }
-  listarRoles(): Observable<Rol[]>
-  {
-    return this.http.get<Rol[]>(baseUrlUtil + '/roles');
   }
 }

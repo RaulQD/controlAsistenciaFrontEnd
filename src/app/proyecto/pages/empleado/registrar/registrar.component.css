@@ -110,6 +110,7 @@ span::before {
   content: " *";
   color: red;
 }
+
 .invalid {
   display: flex;
   flex-direction: column;

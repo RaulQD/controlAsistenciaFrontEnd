@@ -22,7 +22,7 @@
 }
 .listar__button {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
 }
@@ -99,6 +99,7 @@
 .listar__action-buttons:nth-child(3) {
   color: #ff0000;
   padding: 0;
+  cursor:pointer;
 }
 .form__content {
   display: grid;
@@ -185,7 +186,7 @@
   width: 100%;
 }
 .btn__save {
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
   border-radius: 5px;
   background-color: var(--primary-color);
   color: var(--panel-color);
@@ -204,4 +205,23 @@
   font-size: 0.875rem;
   font-weight: 500;
   transition: 0.3s ease-in-out;
+  margin-left: 0.625rem;
+}
+.listar__buscar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.filtrar_button{
+  padding: 0.625rem 1rem;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--panel-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border: none;
+
 }

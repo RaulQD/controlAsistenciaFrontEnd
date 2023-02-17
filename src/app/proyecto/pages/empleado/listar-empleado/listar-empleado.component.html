@@ -2,14 +2,21 @@
     <h4>Lista de Empleados</h4>
     <div class="listar__content">
         <div class="listar__button">
-            <a routerLink="/dashboard/registrar-empleado" class="btn__save">
-                <i class="bx bx-plus"></i>
-                Nuevo Empleado
-            </a>
-            <button type="button" class="btn__export" data-bs-toggle="modal" data-bs-target="#exportModal">
-                <i class="bx bx-export"></i>
-                Actualizar empleados por excel
-            </button>
+            <div>
+                <a routerLink="/dashboard/registrar-empleado" class="btn__save">
+                    <i class="bx bx-plus"></i>
+                    Nuevo Empleado
+                </a>
+                <button type="button" class="btn__export" data-bs-toggle="modal" data-bs-target="#exportModal">
+                    <i class="bx bx-export"></i>
+                    Actualizar empleados por excel
+                </button>
+            </div>
+            <form class="listar__buscar" autocomplete="off">
+                <input type="text" class="listar__buscar--input" placeholder="searching" name="nombre"
+                    [(ngModel)]="nombre">
+                <button type="submit" class="filtrar_button">Filtrar</button>
+            </form>
         </div>
 
         <div class="listar__content-table">
@@ -21,18 +28,10 @@
                     </a>
                     <p>registros</p>
                 </div> -->
-                <form class="listar__buscar" autocomplete="off">
-                    <input type="text" class="listar__buscar--input" placeholder="searching" name="nombre"
-                        [(ngModel)]="nombre">
-                    <button>filtrar</button>
-                </form>
-
 
             </div>
-            <div *ngIf="error" class="alert">
-                No hay más registro que listar.
-            </div>
-            <table *ngIf="!error" class="listar__table">
+
+            <table class="listar__table">
                 <thead class="listar__thead">
                     <tr>
                         <th>Código</th>
@@ -47,8 +46,7 @@
                     </tr>
                 </thead>
                 <tbody class="listar__tbody">
-
-                    <tr *ngFor=" let e of empleados">
+                    <tr *ngFor=" let e of usuario">
                         <td>{{e.idUsuario}}</td>
                         <!-- <td>
                             <img *ngIf="e?.foto" src="http://localhost:8090/api/empleado/uploads/img/{{e.foto}}"
@@ -78,82 +76,17 @@
                                     class="listar__action-buttons">
                                     <i class="bx bx-show"></i>
                                 </a>
-                                <button type="button" class="listar__action-buttons">
+                                <a (click)="deleteUsuario(e)" class="listar__action-buttons">
                                     <i class="bx bx-trash"></i>
-                                </button>
+                                </a>
 
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination ">
-                    <li class="page-item ">
-                        <a class="page-link " (click)="previus()" aria-label="Previous" style="cursor:pointer;">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item" *ngFor="let page of totalPages; let i = index">
-                        <a class="page-link" (click)="setPage(i)" style="cursor:pointer;">{{i + 1}}</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" (click)="next()" aria-label="Next" style="cursor:pointer;">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <app-pagination *ngIf="paginator" [paginator]="paginator"></app-pagination>
         </div>
     </div>
 
-</div>
-<!-- Modal Actualizar-->
-<div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Empleado</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer modal-button">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i class="bx bx-x"
-                        id="btn__act--cerrar"></i>Cerrar</button>
-                <!-- <button (click)="putEmpleado()" class="btn btn-success"> <i class="bx bx-save"></i>Actualizar</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-<!--EXPORT AND IMPORT MODAL-->
-<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    <i class="bx bx-upload"></i> Cargar Empleado
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form">
-                    <div class="form__export">
-                        <div class="form__file">
-                            <i class="bx bx-file"></i>
-                            <a (click)="exportExcel()">Exportar Empleados Ingresados al sistema</a>
-                        </div>
-                        <div class="form__camp">
-                            <label for="file" class="form__label">Archivo de excel</label>
-                            <input type="file" class="form__input" name="file" id="file" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn__save">Subir Archivo</button>
-            </div>
-        </div>
-    </div>
 </div>

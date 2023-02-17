@@ -18,21 +18,22 @@ import { DetailsProfileComponent } from './pages/empleado/details-profile/detail
 
 const router: Routes = [
   {
-    path:'',
-    component:HomeComponent,
-    children:[
-      {path:'',component:DashboardComponent,data:{titulo:'Dashboard'}},
-      {path:'listar-empleado',component: ListarEmpleadoComponent,data:{titulo:'Empleado'}},
-      {path:'registrar-empleado',component:RegistrarComponent,data:{titulo:'Registrar Empleado'}},
-      {path:'editar-empleado/:id',component:EditarComponent,data:{titulo:'Editar Empleado'}},
-      {path:'feriado',component: FeriadoComponent,data:{titulo:'Feriado'}},
-      {path:'reporte-asistencia',component:ReporteAsistenciaComponent,data:{titulo:'Reporte de asistencia'}},
-      {path:'reporte-general',component:ReporteGeneralComponent,data:{titulo:'Reporte general'}},
-      {path:'listar-area',component:ListarAreasComponent,data:{titulo:'Areas'}},
-      {path:'registrar-area',component:AreaRegistrarComponent,data:{titulo:'Areas'}},
-      {path:'editar-area/:id',component:EditarAreaComponent, data:{titulo:'Areas'}},
+    path: '',
+    component: HomeComponent,
+    children: [
+      { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+      { path: 'listar-empleado', component: ListarEmpleadoComponent, data: { titulo: 'Empleado' } },
+      { path: 'listar-empleado/page/:page', component: ListarEmpleadoComponent, data: { titulo: 'Empleado' } },
+      { path: 'registrar-empleado', component: RegistrarComponent, data: { titulo: 'Registrar Empleado' } },
+      { path: 'editar-empleado/:id', component: EditarComponent, data: { titulo: 'Editar Empleado' } },
+      { path: 'feriado', component: FeriadoComponent, data: { titulo: 'Feriado' } },
+      { path: 'reporte-asistencia', component: ReporteAsistenciaComponent, data: { titulo: 'Reporte de asistencia' } },
+      { path: 'reporte-general', component: ReporteGeneralComponent, data: { titulo: 'Reporte general' } },
+      { path: 'listar-area', component: ListarAreasComponent, data: { titulo: 'Areas' } },
+      { path: 'registrar-area', component: AreaRegistrarComponent, data: { titulo: 'Areas' } },
+      { path: 'editar-area/:id', component: EditarAreaComponent, data: { titulo: 'Areas' } },
       // {path:'cargo',component:CargoComponent,data:{titulo:'Cargos'}}
-      {path:'detalle-empleado/:id',component:DetailsProfileComponent,data:{titulo:'Perfil de Usuario'}},
+      { path: 'detalle-empleado/:id', component: DetailsProfileComponent, data: { titulo: 'Perfil de Usuario' } },
 
     ]
   }
@@ -44,7 +45,7 @@ const router: Routes = [
     RouterModule.forChild(router),
     CommonModule
   ],
-  exports:[
+  exports: [
     RouterModule
   ]
 })

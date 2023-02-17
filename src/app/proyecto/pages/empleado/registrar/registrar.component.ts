@@ -6,10 +6,9 @@ import { Usuario } from '../../../interface/usuario.interface';
 import { Cargo } from '../../../interface/cargo.interface';
 import { Area } from '../../../interface/area.interface';
 import Swal from 'sweetalert2';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { dniPattern, emailPattern, nombreApellidoPattern } from 'src/app/shared/validators/validator';
-import { Rol } from '../../../interface/rol.interface';
 
 @Component({
   selector: 'app-registrar',
@@ -19,14 +18,13 @@ import { Rol } from '../../../interface/rol.interface';
 export class RegistrarComponent implements OnInit
 {
 
-  fotoSeleccionada!: File;
-
   //VARIABLES
-  empleados: Usuario[] = [];
+
   cargos: Cargo[] = [];
   areas: Area[] = [];
-  roles: Rol[] = [];
-  objEmpleado: Usuario = {
+  id: number = 0;
+
+  objUsuario: Usuario = {
     idUsuario: 0,
     nombre: '',
     apellido: '',
@@ -38,16 +36,14 @@ export class RegistrarComponent implements OnInit
     fechaNacimiento: new Date(),
     area: {
       idArea: -1,
+      area: '',
     },
     cargo: {
       idCargo: -1,
-    },
-    usuario: '',
-    contrasena: '',
-    roles: {
-      idRol: -1,
+      cargo: '',
     }
   }
+
 
   //VALIDAR FORMULARIO FORMGROUP
   form: FormGroup = this.formBuilder.group({
@@ -59,37 +55,31 @@ export class RegistrarComponent implements OnInit
     direccion: [ '', [ Validators.required ] ],
     tarifa: [ '', [ Validators.required, Validators.min(0), Validators.pattern('[0-9]{1,9}') ] ],
     nacimiento: [ '', [ Validators.required ] ],
-    area: [ -1, [ Validators.required, Validators.min(1) ] ],
-    cargo: [ -1, [ Validators.required, Validators.min(1) ] ],
-    roles: [ -1, [ Validators.required, Validators.min(1) ] ],
-    usuario: [ '', [ Validators.required ] ],
-    contrasena: [ '', [ Validators.required ] ],
-
+    area: [ '', [ Validators.required, Validators.min(1) ] ],
+    cargo: [ '', [ Validators.required, Validators.min(1) ] ],
   });
 
 
   constructor(private utilsService: UtilService,
     private usuarioService: UsuarioService,
     private router: Router,
-    private formBuilder: FormBuilder)
-  {
-    this.utilsService.listarRoles().subscribe((res) => this.roles = res);
+    private formBuilder: FormBuilder,
+    private activatedRouter: ActivatedRoute) { }
 
-    this.utilsService.getCargo().subscribe((res) => this.cargos = res);
 
-    this.utilsService.getArea().subscribe((res) => { this.areas = res });
-  }
-  ngOnInit()
+  ngOnInit(): void
   {
+
+    this.utilsService.getCargo().subscribe((cargo) => { this.cargos = cargo; });
+
+    this.utilsService.getArea().subscribe((area) => { this.areas = area; });
+
     //CAMBIAR REACTIVAMENTE EL VALOR DEL FORMULARIO
     this.form.valueChanges.pipe(
       debounceTime(500)
-    ).subscribe(value =>
-    {
-      console.log(value);
-    });
-
+    ).subscribe(value => { console.log(value) });
   }
+
   //SI ES REQUERIDO
   isValid(campo: string)
   {
@@ -104,28 +94,30 @@ export class RegistrarComponent implements OnInit
   postEmpleado(e: Event)
   {
     e.preventDefault();
-    //VALIDAR BOTON ACTIVO Y ACTIVAR LAS VALIDACIONES
+    //VALIDAR BOTON GUARDAR Y ACTIVAR LAS VALIDACIONES
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-
-    this.usuarioService.postEmpleado(this.objEmpleado).subscribe((res) =>
+    //REGISTRAR
+    this.usuarioService.postEmpleado(this.objUsuario).subscribe(res =>
     {
       this.form.reset();
-      this.router.navigate([ '/dashboard/listar-empleado' ])
       Swal.fire({
         title: 'Mensaje',
         text: res.mensaje,
         icon: 'info'
       });
+      this.router.navigate([ '/dashboard/listar-empleado' ])
     });
   }
+
   // selectPhoto(event:any){
   //   this.fotoSeleccionada = event.target.files[0];
   //   console.log(this.fotoSeleccionada);
 
   // }
+
   //CANCELAR
   cancelar()
   {

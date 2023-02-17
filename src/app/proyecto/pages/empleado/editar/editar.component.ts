@@ -17,12 +17,10 @@ import { nombreApellidoPattern, dniPattern, emailPattern } from '../../../../sha
 })
 export class EditarComponent implements OnInit
 {
-
   cargos: Cargo[] = [];
   areas: Area[] = [];
-
   id: number = 0;
-  objEmpleado: Usuario = {
+  objUsuario: Usuario = {
     idUsuario: 0,
     nombre: '',
     apellido: '',
@@ -30,15 +28,20 @@ export class EditarComponent implements OnInit
     correo: '',
     contacto: '',
     direccion: '',
-    tarifa: 0,
+    tarifa: '',
     fechaNacimiento: new Date(),
+    fechaRegistro: new Date(),
     area: {
       idArea: -1,
+      area: '',
     },
     cargo: {
       idCargo: -1,
+      cargo: '',
     },
+    estado: ''
   }
+
   /* Creating a form group with the name of the form and the validators. */
   form: FormGroup = this.formBuilder.group({
     nombre: [ '', [ Validators.required, Validators.pattern(nombreApellidoPattern) ] ],
@@ -47,11 +50,11 @@ export class EditarComponent implements OnInit
     correo: [ '', [ Validators.required, Validators.pattern(emailPattern) ] ],
     contacto: [ '', [ Validators.required, Validators.pattern('[0-9]{9}') ] ],
     direccion: [ '', [ Validators.required ] ],
-    tarifa: [ 0, [ Validators.required, Validators.min(0), Validators.pattern('[0-9]{1,9}') ] ],
+    tarifa: [ '', [ Validators.required, Validators.min(0), Validators.pattern('[0-9]{1,9}') ] ],
     nacimiento: [ '', [ Validators.required ] ],
     registro: [ '', [ Validators.required ] ],
-    area: [ '', [ Validators.required, Validators.min(1) ] ],
-    cargo: [ '', [ Validators.required, Validators.min(1) ] ],
+    area: [ -1, [ Validators.required, Validators.min(1) ] ],
+    cargo: [ -1, [ Validators.required, Validators.min(1) ] ],
     estado: [ '', [ Validators.required ] ]
   });
 
@@ -61,9 +64,13 @@ export class EditarComponent implements OnInit
     private activateRouter: ActivatedRoute,
     private formBuilder: FormBuilder)
   {
-    this.utilsService.getCargo().subscribe((res) => this.cargos = res);
+    this.utilsService.getCargo().subscribe((cargos) =>
+    { this.cargos = cargos });
 
-    this.utilsService.getArea().subscribe((res) => { this.areas = res });
+    this.utilsService.getArea().subscribe((areas) =>
+    {
+      this.areas = areas;
+    });
   }
   ngOnInit(): void
   {
@@ -75,11 +82,14 @@ export class EditarComponent implements OnInit
       console.log(value);
     });
     /* Getting the id from the url and then it is getting the employee with that id. */
-    this.id = this.activateRouter.snapshot.params[ 'id' ];
-    this.usuarioService.getEmpleadoById(this.id).subscribe((res) =>
+    this.activateRouter.params.subscribe((params) =>
     {
-      this.objEmpleado = res;
-    }, (error) => { console.log(error) });
+      let id = params[ 'id' ];
+      this.usuarioService.getEmpleadoById(id).subscribe((res) =>
+      {
+        this.objUsuario = res;
+      })
+    })
   }
   /**
   * It returns true if the field has the error 'required'
@@ -106,14 +116,12 @@ export class EditarComponent implements OnInit
       this.form.markAllAsTouched();
       return;
     }
-    this.usuarioService.putEmpleado(this.id, this.objEmpleado).subscribe((res) =>
+    this.usuarioService.putEmpleado(this.id, this.objUsuario).subscribe((res) =>
     {
-      Swal.fire({ title: 'Actualización', text: res.mensaje, icon: 'info' }).then(() =>
-      {
-        this.router.navigate([ '/dashboard/listar-empleado' ]);
-      });
+      Swal.fire({ title: 'Actualización', text: res.mensaje, icon: 'info' });
+      this.form.reset();
+      this.router.navigate([ '/dashboard/listar-empleado' ]);
     });
-    this.form.reset();
   }
 
   cancelar()

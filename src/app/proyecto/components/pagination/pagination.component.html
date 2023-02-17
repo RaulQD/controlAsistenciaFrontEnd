@@ -1,8 +1,23 @@
-<div class="pagination">
-    <a (click)="previus()" class="previus">
-        <i class='bx bx-first-page'></i>
-    </a>
-    <a (click)="next()" class="next">
-        <i class='bx bx-last-page'></i>
-    </a>
-</div>
+<nav aria-label="Page navigation example ">
+
+    <ul *ngIf="page.length > 0" class="pagination page-nav">
+        <li class="page-item" *ngIf="paginator.number > 0">
+            <a class="page-link" [routerLink]="['/dashboard/listar-empleado/page/', paginator.number-1]"
+                aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li *ngFor="let pageNumber of page" class="page-item"
+            [ngClass]="pageNumber - 1 == paginator.number ? 'disabled':''">
+            <span class="page-link" *ngIf="pageNumber - 1 == paginator.number">{{pageNumber}}</span>
+            <a *ngIf="pageNumber - 1 != paginator.number"
+                [routerLink]="['/dashboard/listar-empleado/page/', pageNumber - 1]" class="page-link">{{pageNumber}}</a>
+        </li>
+        <li class="page-item" *ngIf="paginator.number < paginator.totalPages - 1">
+            <a class="page-link" [routerLink]="['/dashboard/listar-empleado/page/', paginator.number+1]"
+                aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

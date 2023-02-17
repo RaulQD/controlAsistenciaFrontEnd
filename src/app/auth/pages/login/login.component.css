@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.25rem;
 }
 .login__image {
   width: 100px;
@@ -26,14 +27,15 @@
   margin-bottom: 1.25rem;
 }
 .forms {
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.9375rem;
 }
 .forms__camp {
   position: relative;
   height: 45px;
   width: 100%;
-  margin-bottom: 0.9375rem;
 }
 .forms__input {
   padding: 0 0.875rem;
@@ -42,13 +44,14 @@
   width: 100%;
   height: 100%;
   font-size: 0.875rem;
+  outline: none;
 }
 .forms__href {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.875rem;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-decoration: underline;
@@ -83,4 +86,17 @@
   transform: translateY(-50%);
   color: #cacaca;
   font-size: 1.125rem;
+}
+.invalid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #dc3545;
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+}
+span::before {
+  content: " *";
+  color: red;
 }

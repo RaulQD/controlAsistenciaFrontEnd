@@ -1,11 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppSettings } from 'src/app/app.setting';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Usuario } from '../interface/usuario.interface';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
 
 const baseUrl = AppSettings.API_ENDPOINT + '/empleado';
 
@@ -19,10 +18,10 @@ export class UsuarioService
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    getEmpleado(): Observable<Usuario[]>
-    {
-        return this.http.get<Usuario[]>(baseUrl + '/empleados');
-    }
+    // getEmpleado(): Observable<Usuario[]>
+    // {
+    //     return this.http.get<Usuario[]>(baseUrl + '/empleados');
+    // }
 
     getEmpleadoById(id: number): Observable<Usuario>
     {
@@ -39,9 +38,18 @@ export class UsuarioService
     //        })
     //     );
     // }   
-    getEmpleadoPage(page: number, size: number, order: string): Observable<any>
+    getEmpleadoPage(page: number): Observable<any>
     {
-        return this.http.get<any>(baseUrl + `/empleados/page?page=${page}&size=${size}&order=${order}`)
+        return this.http.get<any>(baseUrl + '/empleados/page/' + page).pipe(
+            map((response: any) =>
+            {
+                response.content.forEach((usuario: { nombre: string; }) =>
+                {
+                    console.log(usuario.nombre)
+                });
+                return response;
+            })
+        );
     }
     // getEmpleadoPorNombre(filtro:string):Observable<Empleado[]>{
     //     return this.http.get<Empleado[]>(baseUrl + '/buscarNombre/' + filtro).pipe(
@@ -55,15 +63,35 @@ export class UsuarioService
     // }
     postEmpleado(usuario: Usuario): Observable<any>
     {
-        return this.http.post<any>(baseUrl + '/registrar', usuario)
+        return this.http.post<any>(baseUrl + '/registrar', usuario).pipe(
+            catchError(err =>
+            {
+                Swal.fire('Error al registrar', err.error.mensaje, 'error');
+                return throwError(err);
+            })
+        );
     }
     putEmpleado(id: number, usuario: Usuario): Observable<any>
     {
-        return this.http.put<any>(baseUrl + '/actualizar/' + id, usuario);
+        return this.http.put<any>(baseUrl + '/actualizar/' + id, usuario).pipe(
+            catchError(err =>
+            {
+                Swal.fire('Error al actualizar', err.error.mensaje, 'error');
+                console.log(err.error.mensaje);
+                return throwError(err);
+            })
+        );
     }
-    deleteEmpleado(id: string): Observable<any>
+    deleteEmpleado(id: number): Observable<any>
     {
-        return this.http.delete<any>(baseUrl + '/eliminar/' + id);
+        return this.http.delete<any>(baseUrl + '/eliminar/' + id).pipe(
+            catchError(err =>
+            {
+                Swal.fire('Error al eliminar', err.error.mensaje, 'error');
+                console.log(err.error.mensaje);
+                return throwError(err);
+            })
+        );
     }
     downloadExcel()
     {

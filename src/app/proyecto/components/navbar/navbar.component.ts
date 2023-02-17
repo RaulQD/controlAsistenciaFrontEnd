@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenService } from '../../../auth/security/service/token.service';
-import { LoginUsuario } from '../../../auth/security/interface/login';
-import { Usuario } from '../../interface/usuario.interface';
+import Swal from 'sweetalert2';
 
 
 
@@ -16,21 +14,13 @@ export class NavbarComponent implements OnInit
   isLogged = false;
   nombreCompleto = '';
 
-  usuario: LoginUsuario;
-  constructor(private router: Router,
-    private tokenService: TokenService)
+
+  constructor(private router: Router)
   {
-    this.usuario = new LoginUsuario();
+
   }
   ngOnInit(): void
   {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-      this.nombreCompleto = this.tokenService.getNombreCompleto();
-    } else {
-      this.isLogged = false;
-      this.nombreCompleto = '';
-    }
 
   }
 
@@ -41,7 +31,8 @@ export class NavbarComponent implements OnInit
   }
   logout()
   {
+    Swal.fire('Sesion cerrada', `${this.nombreCompleto}, has cerrado sesion con exito`, 'success');
     this.router.navigate([ '/auth/login' ])
-    this.tokenService.logOut();
+
   }
 }

@@ -1,5 +1,6 @@
 <div class="container-registrar">
-    <header class="container__title">Agregar Nuevo Empleado</header>
+    <header class="container__title">Agregar Nuevo Empleado
+    </header>
     <form class="form" autocomplete="off" [formGroup]="form" (ngSubmit)="postEmpleado($event)">
         <div class=" form__personal">
             <div class="form__details">
@@ -9,10 +10,10 @@
                 <div class="form__field">
                     <div class="form__inputs--field">
                         <label for="nombre" class="form__label">Nombres</label>
-                        <input type="text" formControlName="nombre" id="nombre" class="form__input"
-                            placeholder="Ingresar Nombre" [(ngModel)]="objEmpleado.nombre">
+                        <input type="text" formControlName="nombre" [(ngModel)]="objUsuario.nombre" id="nombre"
+                            class="form__input" placeholder="Ingresar Nombre">
                         <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].touched" class="invalid">
-                            <span *ngIf="isValid('nombre')">Ingresa tú nombre.</span>
+                            <span *ngIf="isValid('nombre')"> Ingresa tú nombre.</span>
                             <span *ngIf="isValidPattern('nombre')">
                                 Ingrese minimo 3 caracteres.
                             </span>
@@ -20,60 +21,58 @@
                     </div>
                     <div class="form__inputs--field">
                         <label for="apellidos" class="form__label">Apellidos</label>
-                        <input type="text" formControlName="apellido" id="apellido" class="form__input"
-                            placeholder="Ingresar Apellidos" [(ngModel)]="objEmpleado.apellido">
+                        <input type="text" formControlName="apellido" [(ngModel)]="objUsuario.apellido" id="apellido"
+                            class="form__input" placeholder="Ingresar Apellidos">
                         <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].touched"
                             class="invalid">
-                            <span *ngIf="isValid('apellido')">Ingresa tú apellido.</span>
+                            <span *ngIf="isValid('apellido')"> Ingresa tú apellido.</span>
                             <span *ngIf="isValidPattern('apellido')"> Ingrese minimo 3 caracteres.</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
                         <label for="dni" class="form__label">DNI</label>
-                        <input type="text" formControlName="dni" id="dni" class="form__input" placeholder="Ingresar Dni"
-                            autocomplete="off" [(ngModel)]="objEmpleado.dni" required>
+                        <input type="text" formControlName="dni" [(ngModel)]="objUsuario.dni" id="dni"
+                            class="form__input" placeholder="Ingresar Dni" autocomplete="off" required>
                         <div *ngIf="form.controls['dni'].errors && form.controls['dni'].touched" class="invalid">
                             <span *ngIf="isValid('dni')">Ingresa tú DNI.</span>
-                            <span *ngIf="isValidPattern('dni')">Ingrese solo números y deben ser 8 digitos.</span>
+                            <span *ngIf="isValidPattern('dni')"> Ingrese solo números y deben ser 8 digitos.</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
-                        <label for="fechaNacimiento" class="form__label">Fecha de Nacimiento</label>
-                        <input type="date" formControlName="nacimiento" id="nacimiento" class="form__input"
-                            [(ngModel)]="objEmpleado.fechaNacimiento">
+                        <label for="nacimiento" class="form__label">Fecha de Nacimiento</label>
+                        <input type="date" formControlName="nacimiento" [(ngModel)]="objUsuario.fechaNacimiento"
+                            id="nacimiento" class="form__input" required>
                         <div *ngIf="form.controls['nacimiento'].errors && form.controls['nacimiento'].touched"
                             class="invalid">
-                            <span *ngIf="isValid('nacimiento')">
-                                La Fecha de nacimiento es obligatoria.
-                            </span>
+                            <span *ngIf="isValid('nacimiento')"> Ingresa tú fecha de nacimiento.</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
                         <label for="correo" class="form__label">Correo</label>
-                        <input type="email" formControlName="correo" id="correo" class="form__input"
-                            placeholder="example@example.com" [(ngModel)]="objEmpleado.correo">
+                        <input type="email" formControlName="correo" [(ngModel)]="objUsuario.correo" id="correo"
+                            class="form__input" placeholder="example@example.com">
                         <div *ngIf="form.controls['correo'].errors && form.controls['correo'].touched" class="invalid">
-                            <span *ngIf="isValid('correo')">Ingresa tú correo electronico.</span>
-                            <span *ngIf="isValidPattern('correo')">No es un correo valido.</span>
+                            <span *ngIf="isValid('correo')"> Ingresa tú correo electronico.</span>
+                            <span *ngIf="isValidPattern('correo')"> No es un correo valido.</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
                         <label for="celular" class="form__label">Telefono Celular</label>
-                        <input type="text" formControlName="contacto" id="contacto" class="form__input"
-                            placeholder="Contacto" [(ngModel)]="objEmpleado.contacto">
+                        <input type="text" formControlName="contacto" [(ngModel)]="objUsuario.contacto" id="contacto"
+                            class="form__input" placeholder="Contacto">
                         <div *ngIf="form.controls['contacto'].errors && form.controls['contacto'].touched"
                             class="invalid">
                             <span *ngIf="isValid('contacto')">Ingresa un número de contacto</span>
-                            <span *ngIf="isValidPattern('contacto')">El contacto debe tener 9 dígitos</span>
+                            <span *ngIf="isValidPattern('contacto')"> El contacto debe tener 9 dígitos</span>
                         </div>
                     </div>
                     <div class="form__inputs--field">
                         <label for="direccion" class="form__label">Dirección</label>
-                        <input type="text" formControlName="direccion" id="direccion" class="form__input"
-                            placeholder="Ingresar dirección" [(ngModel)]="objEmpleado.direccion">
+                        <input type="text" formControlName="direccion" [(ngModel)]="objUsuario.direccion" id="direccion"
+                            class="form__input" placeholder="Ingresar dirección">
                         <div *ngIf="form.controls['direccion'].errors && form.controls['direccion'].touched"
                             class="invalid">
-                            <span *ngIf="isValid('direccion')">Ingresa tú dirección de domicilio.</span>
+                            <span *ngIf="isValid('direccion')"> Ingresa tú dirección de domicilio.</span>
                         </div>
                     </div>
                 </div>
@@ -85,10 +84,10 @@
                 <div class="form__field">
                     <div class="form__inputs--field">
                         <label for="area" class="form__label">Tipo de Area</label>
-                        <select formControlName="area" id="area" class="form__input"
-                            [(ngModel)]="objEmpleado.area!.idArea">
+                        <select formControlName="area" [(ngModel)]="objUsuario.area!.idArea" id="area"
+                            class="form__input">
                             <option value="-1"> --- Seleccionar --- </option>
-                            <option *ngFor="let a of areas" [value]="a.idArea">{{a.area}}</option>
+                            <option *ngFor="let area of areas" value={{area.idArea}}>{{area.area}}</option>
                         </select>
                         <div *ngIf="form.controls['area'].errors && form.controls['area'].touched" class="invalid">
                             <span *ngIf="isValid('area')">
@@ -101,10 +100,10 @@
                     </div>
                     <div class="form__inputs--field">
                         <label for="cargo" class="form__label">Tipo de Cargo</label>
-                        <select formControlName="cargo" id="cargo" class="form__input"
-                            [(ngModel)]="objEmpleado.cargo!.idCargo">
+                        <select formControlName="cargo" [(ngModel)]="objUsuario.cargo!.idCargo" id="cargo"
+                            class="form__input">
                             <option value="-1"> --- Seleccionar --- </option>
-                            <option *ngFor="let c of cargos" [value]="c.idCargo">{{c.cargo}}</option>
+                            <option *ngFor="let cargo of cargos" value={{cargo.idCargo}}>{{cargo.cargo}}</option>
                         </select>
                         <div *ngIf="form.controls['cargo'].errors && form.controls['cargo'].touched" class="invalid">
                             <span *ngIf="isValid('cargo')">
@@ -117,8 +116,8 @@
                     </div>
                     <div class="form__inputs--field">
                         <label for="tarifa" class="form__label">Renumeración</label>
-                        <input type="text" formControlName="tarifa" id="tarifa" class="form__input" placeholder="0.0"
-                            autocomplete="off" [(ngModel)]="objEmpleado.tarifa">
+                        <input type="text" formControlName="tarifa" [(ngModel)]="objUsuario.tarifa" id="tarifa"
+                            class="form__input" placeholder="0.0">
                         <div *ngIf="form.controls['tarifa'].errors && form.controls['tarifa'].touched" class="invalid">
                             <span *ngIf="isValid('tarifa')">
                                 Ingresa una renumeración.
@@ -131,17 +130,18 @@
                             </span>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div class="form__details">
-                <h4 class="form__title">
+            <!-- <div class="form__details">
+                <h4 class="form__title">s
                     2.- Creación de usuario
                 </h4>
                 <div class="form__field">
                     <div class="form__inputs--field">
                         <label for="usuario" class="form__label">Usuario</label>
                         <input type="text" formControlName="usuario" class="form__input" id="usuario"
-                            placeholder="Ingresa usuario" [(ngModel)]="objEmpleado.usuario" required>
+                            placeholder="Ingresa usuario" required>
                         <div *ngIf="form.controls['usuario'].errors && form.controls['usuario'].touched"
                             class="invalid">
                             <span *ngIf="isValid('usuario')">Ingresa tú usuario</span>
@@ -150,7 +150,7 @@
                     <div class="form__inputs--field">
                         <label for="contrasena" class="form__label">Contraseña</label>
                         <input type="password" formControlName="contrasena" class="form__input" id="contrasena"
-                            [(ngModel)]="objEmpleado.contrasena" placeholder="Ingresa contraseña" required>
+                            placeholder="Ingresa contraseña" required>
                         <div *ngIf="form.controls['usuario'].errors && form.controls['usuario'].touched"
                             class="invalid">
                             <span *ngIf="isValid('usuario')">Ingresa tú contraseña</span>
@@ -158,10 +158,9 @@
                     </div>
                     <div class="form__inputs--field">
                         <label for="roles" class="form__label">Roles del Usuario</label>
-                        <select formControlName="roles" id="roles" class="form__input"
-                            [(ngModel)]="objEmpleado.roles!.idRol">
+                        <select formControlName="roles" id="roles" class="form__input">
                             <option value="-1"> --- Seleccionar --- </option>
-                            <option *ngFor="let r of roles" [value]="r.idRol">{{r.roles}}</option>
+                            <option *ngFor="let role of roles" [value]="role.idRol">{{role.rolName}}</option>
                         </select>
                         <div *ngIf="form.controls['roles'].errors && form.controls['roles'].touched" class="invalid">
                             <span *ngIf="isValid('roles')">
@@ -173,11 +172,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="form__details">
                 <div class="form__btn">
                     <button (click)="cancelar()" class="btn__danger"> <i class="bx bx-x"></i>Cancelar</button>
-                    <button (click)="postEmpleado($event)" class="btn__save"> <i class="bx bx-save"></i>
+                    <button type="submit" class="btn__save"> <i class="bx bx-save"></i>
                         Guardar Registro</button>
                 </div>
             </div>
