@@ -12,7 +12,7 @@
                     Actualizar empleados por excel
                 </button>
             </div>
-            <form class="listar__buscar" autocomplete="off">
+            <form class="listar__buscar" autocomplete="off" (ngSubmit)="getConsultName()">
                 <input type="text" class="listar__buscar--input" placeholder="searching" name="nombre"
                     [(ngModel)]="nombre">
                 <button type="submit" class="filtrar_button">Filtrar</button>
@@ -20,17 +20,6 @@
         </div>
 
         <div class="listar__content-table">
-            <div class="size">
-                <!-- <div class="listar__size--page">
-                    <p>Mostrar</p>
-                    <a (click)="sort()" class="sort">
-                        <i class='bx bxs-sort-alt'></i>
-                    </a>
-                    <p>registros</p>
-                </div> -->
-
-            </div>
-
             <table class="listar__table">
                 <thead class="listar__thead">
                     <tr>

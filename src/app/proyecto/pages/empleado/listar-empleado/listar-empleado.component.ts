@@ -24,6 +24,7 @@ export class ListarEmpleadoComponent implements OnInit
   cargos: Cargo[] = [];
   areas: Area[] = [];
   nombre: string = "";
+  error: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private activeRoute: ActivatedRoute)
   {
@@ -49,6 +50,20 @@ export class ListarEmpleadoComponent implements OnInit
       });
     });
   }
+  getConsultName()
+  {
+    this.usuarioService.getUsuarioByParams(this.nombre).subscribe((res) =>
+    {
+      this.getEmpleadoPage();
+      this.usuario = res.lista;
+    })
+  }
+  clearConsult(): void
+  {
+    this.nombre = '';
+
+  }
+
   deleteUsuario(usuario: Usuario)
   {
     Swal.fire({
@@ -77,36 +92,6 @@ export class ListarEmpleadoComponent implements OnInit
 
   }
 
-  //PAGINACIÓN
-  // previus()
-  // {
-  //   if (!this.isFirst) {
-  //     this.page--;
-  //     this.getEmpleadoByParams();
-  //   }
-  // }
-  // next()
-  // {
-  //   if (!this.isLast) {
-  //     this.page++;
-  //     this.getEmpleadoByParams();
-  //   }
-  // }
-  // setPage(page: number)
-  // {
-  //   this.page = page;
-  //   this.getEmpleadoByParams();
-  // }
-
-  // consultaNombre(){
-  //   this.error = false;
-  //   this.empleadoService.getEmpleadoPorNombre(this.nombre === ""?"todos":this.nombre).subscribe((res)=>{
-  //     this.empleados = res;
-  //   },(err)=>{
-  //     this.error =true;
-  //     console.log(err);
-  //   })
-  // }
   exportExcel()
   {
     this.usuarioService.downloadExcel().subscribe((res) =>

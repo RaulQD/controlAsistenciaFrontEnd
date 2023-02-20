@@ -23,21 +23,23 @@ export class UsuarioService
     //     return this.http.get<Usuario[]>(baseUrl + '/empleados');
     // }
 
-    getEmpleadoById(id: number): Observable<Usuario>
+    getUsuarioById(id: number): Observable<Usuario>
     {
         return this.http.get<Usuario>(baseUrl + '/buscar/' + id)
     }
-    // getEmpledoByParams(nombre:string):Observable<any>{
-    //     const params: HttpParams = new HttpParams().set('nombre',nombre);
-    //     return this.http.get<any>(baseUrl+ '/buscarPorNombre',{params})
-    //     .pipe(
-    //        catchError(err =>{
-    //         Swal.fire('Error al buscar', err.error.mensaje, 'error');
-    //         console.log(err.error.mensaje);
-    //         return throwError(err);
-    //        })
-    //     );
-    // }   
+    getUsuarioByParams(nombre: string): Observable<any>
+    {
+        const params: HttpParams = new HttpParams().set('nombre', nombre);
+        return this.http.get<any>(baseUrl + '/buscarPorNombre', { params })
+            .pipe(
+                catchError(err =>
+                {
+                    Swal.fire('Error al buscar', err.error.mensaje, 'error');
+                    console.log(err.error.mensaje);
+                    return throwError(err);
+                })
+            );
+    }
     getEmpleadoPage(page: number): Observable<any>
     {
         return this.http.get<any>(baseUrl + '/empleados/page/' + page).pipe(
@@ -51,16 +53,7 @@ export class UsuarioService
             })
         );
     }
-    // getEmpleadoPorNombre(filtro:string):Observable<Empleado[]>{
-    //     return this.http.get<Empleado[]>(baseUrl + '/buscarNombre/' + filtro).pipe(
-    //         map( res => res as Empleado[]),
-    //         catchError(err =>{
-    //             Swal.fire('Error al buscar', err.error.mensaje, 'error');
-    //             console.log(err.error.mensaje);
-    //             return throwError(err);
-    //         })
-    //     );
-    // }
+
     postEmpleado(usuario: Usuario): Observable<any>
     {
         return this.http.post<any>(baseUrl + '/registrar', usuario).pipe(

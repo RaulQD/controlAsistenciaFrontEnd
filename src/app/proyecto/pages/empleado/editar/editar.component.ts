@@ -85,7 +85,7 @@ export class EditarComponent implements OnInit
     this.activateRouter.params.subscribe((params) =>
     {
       let id = params[ 'id' ];
-      this.usuarioService.getEmpleadoById(id).subscribe((res) =>
+      this.usuarioService.getUsuarioById(id).subscribe((res) =>
       {
         this.objUsuario = res;
       })

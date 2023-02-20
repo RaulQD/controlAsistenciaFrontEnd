@@ -39,7 +39,7 @@ export class DetailsProfileComponent implements OnInit
   ngOnInit(): void
   {
     this.id = this.activatedRoute.snapshot.params[ 'id' ];
-    this.usuarioService.getEmpleadoById(this.id).subscribe((res) =>
+    this.usuarioService.getUsuarioById(this.id).subscribe((res) =>
     {
       this.objEmpleado = res;
     }, (error) => { console.log(error) });
